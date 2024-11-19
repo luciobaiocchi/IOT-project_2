@@ -63,6 +63,8 @@ public class WorkingPanel extends JPanel {
         // Aggiungi i componenti al pannello principale
         add(centerPanel, BorderLayout.CENTER); // Pannello centrale con immagine e progressBar centrati
 
+
+
         setVisible(true);
     }
 }

@@ -5,6 +5,8 @@
 #include "Costants.h"
 #include "LedTask.h"
 #include "ProximityTask.h"
+#include "SerialCommTask.h"
+
 
 int currentState;
 
@@ -30,10 +32,16 @@ void setup() {
   Task* proxTask = new ProximityTask(2);
   proxTask->init(200);
 
+  Task* serialCommTask = new SerialCommTask();
+  serialCommTask->init(250);
+  
+
   scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
   scheduler.addTask(proxTask);
+  scheduler.addTask(serialCommTask);
+  
 }
 
 void loop() {

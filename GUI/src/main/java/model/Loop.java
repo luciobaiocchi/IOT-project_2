@@ -2,9 +2,16 @@ package model;
 
 import utilities.CommChannel;
 import utilities.SerialCommChannel;
+import utilities.State;
 
 public class Loop extends Thread{
     private CommChannel channel;
+    private State currentState;
+    private
+
+    public Loop(){
+        currentState = State.CONTAINER_OK;
+    }
 
     public void run() {
 
@@ -17,7 +24,11 @@ public class Loop extends Thread{
 
 
         while(true){
-                                                            
+            switch (currentState){
+                case CONTAINER_OK:
+
+            }
+
         }
     }
 }
