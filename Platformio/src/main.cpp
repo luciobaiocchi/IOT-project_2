@@ -4,6 +4,7 @@
 #include "LCDTask.h"
 #include "Costants.h"
 #include "LedTask.h"
+#include "SerialCommTask.h"
 
 
 int currentState;
@@ -27,9 +28,15 @@ void setup() {
   Task* ledTask = new LedTask(3, 4);
   ledTask->init(200);
 
+
+  Task* serialCommTask = new SerialCommTask();
+  serialCommTask->init(250);
+  
+
   scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
+  scheduler.addTask(serialCommTask);
   
 }
 
