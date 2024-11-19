@@ -4,7 +4,7 @@
 #include "LCDTask.h"
 #include "Costants.h"
 #include "LedTask.h"
-
+#include "ProximityTask.h"
 
 int currentState;
 
@@ -18,7 +18,7 @@ void setup() {
 
 
   /* Tasks initialization*/
-  Task* gateTask = new GateTask(2, 8, 9);
+  Task* gateTask = new GateTask(5, 8, 9);
   gateTask->init(100);
 
   Task* lcdTask = new LCDTask();
@@ -27,10 +27,13 @@ void setup() {
   Task* ledTask = new LedTask(3, 4);
   ledTask->init(200);
 
+  Task* proxTask = new ProximityTask(2);
+  proxTask->init(200);
+
   scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
-  
+  scheduler.addTask(proxTask);
 }
 
 void loop() {
