@@ -8,6 +8,6 @@
 #define TMP_ALLARM 5
 
 #define MAX_TIME_OPEN 3000
-#define T2 3000
+#define T2 2000
 
 #endif

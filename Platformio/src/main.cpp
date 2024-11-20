@@ -19,7 +19,7 @@ void setup() {
 
 
   /* Tasks initialization*/
-  Task* gateTask = new GateTask(2, 8, 9);
+  Task* gateTask = new GateTask(5, 8, 9);
   gateTask->init(100);
 
   Task* lcdTask = new LCDTask();
