@@ -6,9 +6,9 @@ Gate::Gate(int pinServo){
 
 void Gate::closeGate(){
     if (currentState == OPEN){
-        servo.attach(pinServo);
-        servo.write(1500);
-        servo.detach();
+        servo->attach(pinServo);
+        servo->write(1500);
+        servo->detach();
         waitTheT2 = millis();
     }
     
@@ -16,9 +16,9 @@ void Gate::closeGate(){
 
 void Gate::openGateButton(){
     if (currentState == CLOSE){
-        servo.attach(pinServo);
-        servo.write(750);
-        servo.detach();
+        servo->attach(pinServo);
+        servo->write(750);
+        servo->detach();
         timeGateOpen = millis();
         waitTheT2 = 0;
     }
@@ -27,9 +27,9 @@ void Gate::openGateButton(){
 
 void Gate::openGateUser(){
     if (currentState == CLOSE){
-        servo.attach(pinServo);
-        servo.write(2250);
-        servo.detach();
+        servo->attach(pinServo);
+        servo->write(2250);
+        servo->detach();
         timeGateOpen = millis();
     }
 

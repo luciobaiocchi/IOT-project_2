@@ -1,5 +1,6 @@
 #ifndef __GATE__
 #define __GATE__
+#include "Arduino.h"
 #include <ServoTimer2.h>  
 #include "Costants.h"
 #include "Arduino.h"
@@ -7,7 +8,7 @@
 
 class Gate{
 private:
-    ServoTimer2 servo;
+    ServoTimer2* servo;
     enum State{ CLOSE, OPEN } currentState;
     int pinServo;
     long timeGateOpen;

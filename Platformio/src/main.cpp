@@ -21,8 +21,7 @@ void setup() {
   ContainerProp container = ContainerProp();
 
   /* Tasks initialization*/
-  Task* gateTask = new GateTask(5, 8, 9);
-  Task* gateTask = new GateTask(5, 8, 9); 
+  Task* gateTask = new GateTask(7, 8, 5, container);
   gateTask->init(100);
 
   Task* lcdTask = new LCDTask();
