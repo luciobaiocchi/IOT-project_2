@@ -4,8 +4,9 @@
 #include "LCDTask.h"
 #include "Costants.h"
 #include "LedTask.h"
+#include "ProximityTask.h"
 #include "SerialCommTask.h"
-
+#include "ContainerProp.h"
 
 int currentState;
 
@@ -17,9 +18,11 @@ void setup() {
   Serial.begin(9600);
   scheduler.init(50);
 
+  ContainerProp container = ContainerProp();
 
   /* Tasks initialization*/
   Task* gateTask = new GateTask(5, 8, 9);
+  Task* gateTask = new GateTask(5, 8, 9); 
   gateTask->init(100);
 
   Task* lcdTask = new LCDTask();
@@ -28,14 +31,17 @@ void setup() {
   Task* ledTask = new LedTask(3, 4);
   ledTask->init(200);
 
+  Task* proxTask = new ProximityTask(2);
+  proxTask->init(200);
 
-  Task* serialCommTask = new SerialCommTask();
+  Task* serialCommTask = new SerialCommTask(container);
   serialCommTask->init(250);
   
 
   scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
+  scheduler.addTask(proxTask);
   scheduler.addTask(serialCommTask);
   
 }

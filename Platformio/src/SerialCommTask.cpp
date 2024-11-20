@@ -1,6 +1,8 @@
 #include "SerialCommTask.h"
+#include "ContainerProp.h"
 
-SerialCommTask::SerialCommTask(){
+SerialCommTask::SerialCommTask(ContainerProp container){
+    this->container = container;
     MsgService.init();
 }
 
@@ -9,7 +11,7 @@ void SerialCommTask::init(int period){
 }
 
 void SerialCommTask::tick(){
-    if (currentState == TMP_ALLARM || currentState == CONTAINER_FULL){
+    if (container.isAllarmOn() || container.isFull()){
         receive();
     }else{
         send();
