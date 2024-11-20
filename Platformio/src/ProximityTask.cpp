@@ -2,6 +2,8 @@
 #include "Arduino.h"
 #include "Costants.h"
 #include <EnableInterrupt.h>
+#include <avr/sleep.h>
+
 
 ProximityTask::ProximityTask(int pinSensor){
     this->pinSensor = pinSensor;

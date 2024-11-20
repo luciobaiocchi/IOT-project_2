@@ -1,24 +1,21 @@
-#ifndef __GATETASK__
-#define __ALLARMTASK__
+#ifndef __WASTELEVEL__
+#define __WASTELEVEL__
 #define DHTPIN A5
 #define DHTTYPE DHT11
 
 #include "Task.h"
 #include "Costants.h"
-#include "DHT.h"
 
 extern int currentState;
-DHT dht(DHTPIN, DHTTYPE);
 
-class AllarmTask: public Task {
+class WasteLevelTask: public Task {
 public:
-    AllarmTask(int pinTemp);  
+    WasteLevelTask(int pinSensor);  
     void init(int period);  
     void tick();
-    bool isTempOverMax();
 private:
     long timeGateOpen;
-    int pinTemp;
+    int pinSensor;
 };
 
 #endif
