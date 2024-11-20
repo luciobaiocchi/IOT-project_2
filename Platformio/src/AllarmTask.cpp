@@ -3,9 +3,11 @@
 #include "DHT.h"
 #include "Costants.h"
 #include "Task.h"
+#include "ContainerProp.h"
 
-AllarmTask :: AllarmTask(int pinTemp){
+AllarmTask :: AllarmTask(int pinTemp, ContainerProp container){
     this->pinTemp = pinTemp;
+    this->container = container;
     pinMode(pinTemp, INPUT);
 }
 

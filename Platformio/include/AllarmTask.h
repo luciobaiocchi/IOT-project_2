@@ -6,19 +6,21 @@
 #include "Task.h"
 #include "Costants.h"
 #include "DHT.h"
+#include "ContainerProp.h"
 
 extern int currentState;
 DHT dht(DHTPIN, DHTTYPE);
 
 class AllarmTask: public Task {
 public:
-    AllarmTask(int pinTemp);  
+    AllarmTask(int pinTemp, ContainerProp container);  
     void init(int period);  
     void tick();
     bool isTempOverMax();
 private:
     long timeGateOpen;
     int pinTemp;
+    ContainerProp container;
 };
 
 #endif

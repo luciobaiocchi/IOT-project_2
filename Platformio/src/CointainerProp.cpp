@@ -1,5 +1,6 @@
 #include "ContainerProp.h"
 #include "Arduino.h"
+#include "Costants.h"
 
 ContainerProp :: ContainerProp(){
     this->allarm = false;

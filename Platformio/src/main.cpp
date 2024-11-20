@@ -6,7 +6,7 @@
 #include "LedTask.h"
 #include "ProximityTask.h"
 #include "SerialCommTask.h"
-
+#include "ContainerProp.h"
 
 int currentState;
 
@@ -18,6 +18,7 @@ void setup() {
   Serial.begin(9600);
   scheduler.init(50);
 
+  ContainerProp container = ContainerProp();
 
   /* Tasks initialization*/
   Task* gateTask = new GateTask(5, 8, 9);
@@ -32,7 +33,7 @@ void setup() {
   Task* proxTask = new ProximityTask(2);
   proxTask->init(200);
 
-  Task* serialCommTask = new SerialCommTask();
+  Task* serialCommTask = new SerialCommTask(container);
   serialCommTask->init(250);
   
 
