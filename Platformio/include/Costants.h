@@ -11,5 +11,6 @@
 #define T2 3000
 #define TIME_DEEPSLEEP 10000
 #define MAX_TEMP 35
+#define MAX_CONT_LEVEL 100
 
 #endif
