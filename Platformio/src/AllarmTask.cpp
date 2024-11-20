@@ -17,7 +17,7 @@ void AllarmTask::init(int period){
 
 void AllarmTask::tick(){
     if (isTempOverMax()){
-        currentState = TMP_ALLARM;
+        this->container.setAllarm(true);
     }
 }
 

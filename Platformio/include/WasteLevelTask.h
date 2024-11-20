@@ -5,17 +5,20 @@
 
 #include "Task.h"
 #include "Costants.h"
+#include "ContainerProp.h"
 
 extern int currentState;
 
 class WasteLevelTask: public Task {
 public:
-    WasteLevelTask(int pinSensor);  
+    WasteLevelTask(int pinSensor, ContainerProp container);  
     void init(int period);  
     void tick();
+    bool isFull();
 private:
     long timeGateOpen;
     int pinSensor;
+    ContainerProp container;
 };
 
 #endif

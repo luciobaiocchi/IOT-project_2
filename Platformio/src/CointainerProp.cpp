@@ -35,3 +35,7 @@ bool ContainerProp :: isFull(){
 bool ContainerProp :: isAllarmOn(){
     return this->allarm;
 }
+
+bool ContainerProp :: genericAllarm(){
+    return(this->isAllarmOn() || this->isFull());
+}

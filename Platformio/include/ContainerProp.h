@@ -6,6 +6,7 @@
 class ContainerProp {
 public: 
   ContainerProp();
+  bool genericAllarm();
   bool setWasteLevel(int level);
   bool setAllarm(bool state);
   int getWasteLevel();
