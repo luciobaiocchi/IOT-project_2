@@ -7,6 +7,8 @@
 #include "ProximityTask.h"
 #include "SerialCommTask.h"
 #include "ContainerProp.h"
+#include "WasteLevelTask.h"
+#include "AllarmTask.h"
 
 int currentState;
 
@@ -36,13 +38,19 @@ void setup() {
   Task* serialCommTask = new SerialCommTask(container);
   serialCommTask->init(250);
   
+  Task* wasteLevelTast = new WasteLevelTask(12, 11, container);
+  wasteLevelTast->init(100);
+
+  Task* allarmTask = new AllarmTask(A5, container);
+  wasteLevelTast->init(100);
 
   scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
   scheduler.addTask(proxTask);
   scheduler.addTask(serialCommTask);
-  
+  scheduler.addTask(wasteLevelTast);
+  scheduler.addTask(allarmTask);
 }
 
 void loop() {

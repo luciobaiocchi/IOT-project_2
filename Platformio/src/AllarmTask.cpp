@@ -5,6 +5,11 @@
 #include "Task.h"
 #include "ContainerProp.h"
 
+#define DHTPIN A5
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+
 AllarmTask :: AllarmTask(int pinTemp, ContainerProp container){
     this->pinTemp = pinTemp;
     this->container = container;
