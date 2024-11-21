@@ -1,9 +1,10 @@
 #include "LedTask.h"
 #include "Arduino.h"
 
-LedTask::LedTask(int pinGreen, int pinRed){
+LedTask::LedTask(int pinGreen, int pinRed, ContainerProp container){
     greenLed = new Led(pinGreen);
     redLed = new Led(pinRed);
+    this->container = container;
 }
 
 void LedTask::init(int period){
@@ -11,20 +12,13 @@ void LedTask::init(int period){
 }
 
 void LedTask::tick(){
-    switch (currentState){
-    case GATE_AVAILABLE:{
-        greenLed->switchOn();
-        redLed->switchOff();
-        break;
-    }
-        
-    case CONTAINER_FULL:{
+    if (container.genericAllarm()){
         greenLed->switchOff();
         redLed->switchOn();
-        break;
+    }else{
+        greenLed->switchOn();
+        redLed->switchOff();
     }
-        
-    default:
-        break;
-    }
+    
+    
 }

@@ -32,7 +32,7 @@ void setup() {
   Task* lcdTask = new LCDTask(lcdManager);
   lcdTask->init(150);
 
-  Task* ledTask = new LedTask(3, 4);
+  Task* ledTask = new LedTask(3, 4, container);
   ledTask->init(200);
 
   Task* proxTask = new ProximityTask(2);
