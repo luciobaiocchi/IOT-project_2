@@ -14,6 +14,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("io.github.java-native:jssc:2.9.6")
+    implementation ("org.slf4j:slf4j-simple:2.0.9")
 }
 
 application {
