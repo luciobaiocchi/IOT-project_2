@@ -2,12 +2,12 @@
 #include "Arduino.h"
 #include "Costants.h"
 
-ContainerProp::ContainerProp()
-{
+ContainerProp::ContainerProp(){
+    this->allarm = false;
+    this->contLevel = 0;
 }
 
-ContainerProp::ContainerProp(LCDManager lcdManager)
-{
+ContainerProp::ContainerProp(LCDManager lcdManager){
     this->allarm = false;
     this->contLevel = 0;
     this->lcdManager = lcdManager;
@@ -46,7 +46,7 @@ int ContainerProp::getTempLevel(){
 }
 
 bool ContainerProp::isFull(){
-    return this->contLevel <= MAX_CONT_LEVEL;
+    return this->contLevel >= MAX_CONT_LEVEL;
 }
 
 bool ContainerProp::isAllarmOn(){

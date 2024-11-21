@@ -8,17 +8,17 @@
 #include "ContainerProp.h"
 #include "LCDManager.h"
 
-
-class GateTask: public Task {
+class GateTask : public Task {
 public:
-  GateTask::GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp container, LCDManager lcdManager);  
-  void init(int period);  
-  void tick();
+    GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp& container, LCDManager& lcdManager);  
+    void init(int period);  
+    void tick();
+
 private:
-  Gate* gate;
-  ContainerProp container;
-  Button* open;
-  Button* close;
+    Gate* gate;
+    ContainerProp& container;  
+    Button* open;
+    Button* close;
 };
 
 #endif

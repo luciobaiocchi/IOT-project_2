@@ -6,7 +6,6 @@
 #include "MsgService.h"
 #include "ContainerProp.h"
 
-extern int currentState;
 
 class SerialCommTask : public Task {
 

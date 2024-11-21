@@ -1,55 +1,57 @@
 #include "Gate.h"
 
-Gate::Gate(int pinServo, LCDManager lcdManager){
-    this->pinServo = pinServo;
-    this->lcdManager = lcdManager;
+Gate::Gate(int pinServo, LCDManager& lcdManager) 
+    : pinServo(pinServo), lcdManager(lcdManager) { // Inizializzazione del riferimento
+    currentState = CLOSE;
 }
 
-void Gate::closeGate(){
-    if (currentState == OPEN){
-        servo->attach(pinServo);
+void Gate::closeGate() {
+    if (currentState == OPEN) {
+        // Serial.println("CLOSE");
+        /* servo->attach(pinServo);
         servo->write(1500);
-        servo->detach();
-        waitTheT2 = millis();
+        servo->detach(); */
+        currentState = CLOSE;
+        timeAfterClose = millis();
         lcdManager.setMessage(LCD_3);
     }
-    
-}
-
-void Gate::openGateButton(){
-    if (currentState == CLOSE){
-        servo->attach(pinServo);
-        servo->write(750);
-        servo->detach();
-        timeGateOpen = millis();
-        waitTheT2 = 0;
-        lcdManager.setMessage(LCD_2);
+    if (timeAfterCloseElapsed()){
+        lcdManager.setMessage(LCD_1);
     }
     
 }
 
-void Gate::openGateUser(){
-    if (currentState == CLOSE){
+void Gate::openGateButton() {
+    if (currentState == CLOSE) {
+        // Serial.println("OPEN");
+        currentState = OPEN;
+        /* servo->attach(pinServo);
+        servo->write(750);
+        servo->detach(); */
+        timeGateOpen = millis();
+        lcdManager.setMessage(LCD_2);
+        // Serial.println(lcdManager.getMessage());
+    }
+}
+
+void Gate::openGateUser() {
+    if (currentState == CLOSE) {
+        currentState = OPEN;
         servo->attach(pinServo);
         servo->write(2250);
         servo->detach();
         timeGateOpen = millis();
     }
-
 }
 
-bool Gate::timeOpenElapsed(){
+bool Gate::timeOpenElapsed() {
     return (millis() - timeGateOpen) >= MAX_TIME_OPEN;
 }
 
-bool Gate::timeAfterCloseElapsed(){
-    if ((millis() - waitTheT2) >= T2){
-        lcdManager.setMessage(LCD_1);
-        return true;
-    }
-    return false;
+bool Gate::timeAfterCloseElapsed() {
+    return (millis() - timeAfterClose) >= T2;
 }
 
-int Gate::getState(){
+int Gate::getState() {
     return currentState;
 }

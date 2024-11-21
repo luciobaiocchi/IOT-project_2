@@ -7,8 +7,8 @@
 #define CONTAINER_FULL 4
 #define TMP_ALLARM 5
 
-#define MAX_TIME_OPEN 3000
-#define T2 2000
+#define MAX_TIME_OPEN 10000
+#define T2 5000
 #define TIME_DEEPSLEEP 10000
 #define MAX_TEMP 35
 #define MAX_CONT_LEVEL 100

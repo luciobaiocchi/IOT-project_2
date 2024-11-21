@@ -2,6 +2,7 @@
 #define __LCDMANAGER__
 
 #include "Arduino.h"
+#include "Costants.h"
 
 class LCDManager {
 private:

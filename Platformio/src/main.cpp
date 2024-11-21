@@ -11,28 +11,26 @@
 #include "AllarmTask.h"
 #include "LCDManager.h"
 
-int currentState;
 
 
 Scheduler scheduler;
 
 void setup() {
-  currentState = GATE_AVAILABLE;
   Serial.begin(9600);
   scheduler.init(50);
 
-  LCDManager lcdManager = LCDManager();
-  ContainerProp container = ContainerProp(lcdManager);
+  LCDManager lcdManager;
+  ContainerProp container(lcdManager);
 
 
   /* Tasks initialization*/
-  Task* gateTask = new GateTask(7, 8, 5, container, lcdManager);
-  gateTask->init(100);
+  Task* gateTask = new GateTask(8, 9, 5, container, lcdManager);
+  gateTask->init(150);
 
   Task* lcdTask = new LCDTask(lcdManager);
-  lcdTask->init(150);
+  lcdTask->init(200);
 
-  Task* ledTask = new LedTask(3, 4, container);
+/*   Task* ledTask = new LedTask(3, 4, container);
   ledTask->init(200);
 
   Task* proxTask = new ProximityTask(2);
@@ -42,18 +40,20 @@ void setup() {
   serialCommTask->init(250);
   
   Task* wasteLevelTast = new WasteLevelTask(12, 11, container);
-  wasteLevelTast->init(100);
+  wasteLevelTast->init(400);
 
   Task* allarmTask = new AllarmTask(A5, container);
-  wasteLevelTast->init(100);
+  wasteLevelTast->init(300);
 
-  scheduler.addTask(gateTask);
-  scheduler.addTask(lcdTask);
+  
   scheduler.addTask(ledTask);
   scheduler.addTask(proxTask);
   scheduler.addTask(serialCommTask);
   scheduler.addTask(wasteLevelTast);
-  scheduler.addTask(allarmTask);
+  scheduler.addTask(allarmTask); */
+  scheduler.addTask(gateTask);
+  scheduler.addTask(lcdTask);
+
 }
 
 void loop() {

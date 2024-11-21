@@ -1,7 +1,7 @@
 #include "LCDManager.h"
 
 LCDManager::LCDManager(){
-    messageToDisplay = "";
+    messageToDisplay = LCD_1;
 }
 
 void LCDManager::setMessage(String msg){
