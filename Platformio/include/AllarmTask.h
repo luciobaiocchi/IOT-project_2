@@ -13,7 +13,6 @@ public:
     AllarmTask(int pinTemp, ContainerProp container);  
     void init(int period);  
     void tick();
-    bool isTempOverMax();
 private:
     int pinTemp;
     ContainerProp container;

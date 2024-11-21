@@ -16,6 +16,14 @@ bool ContainerProp :: setWasteLevel(int level){
     return false;
 }
 
+void ContainerProp :: setTempLevel(int level){
+    if ((this->tempLevel +  level) <= MAX_TEMP){
+        this->contLevel = level;
+    }else{
+        this->setAllarm(true);
+    }
+}
+
 bool ContainerProp ::  setAllarm(bool state){
     if(this->isAllarmOn() == state){
         return false;
