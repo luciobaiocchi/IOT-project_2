@@ -13,9 +13,9 @@ class LedTask: public Task {
 private:
     Light* greenLed;
     Light* redLed;
-    ContainerProp container;
+    ContainerProp& container;
 public:
-    LedTask(int pinGreen, int pinRed, ContainerProp container);
+    LedTask(int pinGreen, int pinRed, ContainerProp& container);
     void init(int period);
     void tick();
 };

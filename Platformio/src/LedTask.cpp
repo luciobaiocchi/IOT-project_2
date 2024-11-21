@@ -1,7 +1,7 @@
 #include "LedTask.h"
 #include "Arduino.h"
 
-LedTask::LedTask(int pinGreen, int pinRed, ContainerProp container){
+LedTask::LedTask(int pinGreen, int pinRed, ContainerProp& container): container(container){
     greenLed = new Led(pinGreen);
     redLed = new Led(pinRed);
     this->container = container;

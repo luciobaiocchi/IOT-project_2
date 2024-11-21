@@ -30,9 +30,9 @@ void setup() {
   Task* lcdTask = new LCDTask(lcdManager);
   lcdTask->init(200);
 
-/*   Task* ledTask = new LedTask(3, 4, container);
-  ledTask->init(200);
-
+  Task* ledTask = new LedTask(4, 5, container);
+  ledTask->init(300);
+/* 
   Task* proxTask = new ProximityTask(2);
   proxTask->init(200);
 
@@ -46,13 +46,13 @@ void setup() {
   wasteLevelTast->init(300);
 
   
-  scheduler.addTask(ledTask);
   scheduler.addTask(proxTask);
   scheduler.addTask(serialCommTask);
   scheduler.addTask(wasteLevelTast);
   scheduler.addTask(allarmTask); */
   scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
+  scheduler.addTask(ledTask);
 
 }
 
