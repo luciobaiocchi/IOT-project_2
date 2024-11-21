@@ -31,7 +31,7 @@ void SerialCommTask::receive(){
 
 void SerialCommTask::send(){
     if (MsgService.isMsgAvailable()) {
-        const String message = "L" + (String)this->container.getWasteLevel() + "T" + (String)this->;
+        const String message = "L" + (String)this->container.getWasteLevel() + "T" + (String)this->container.getTempLevel();
         MsgService.sendMsg(message);   
     }
 }

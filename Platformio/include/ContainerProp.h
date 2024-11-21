@@ -8,9 +8,9 @@ class ContainerProp {
 public: 
   ContainerProp(LCDManager lcdManager);
   bool genericAllarm();
-  bool setWasteLevel(int level);
+  void setWasteLevel(int level);
   void setTempLevel(int level);
-  bool setAllarm(bool state);
+  void setAllarm(bool state);
   int getWasteLevel();
   int getTempLevel();
   bool isFull();

@@ -17,10 +17,6 @@ void WasteLevelTask :: tick(){
     this->container.setWasteLevel(this->readLevel());
 }
 
-bool WasteLevelTask :: isFull(){
-    return this->container.isFull();
-}
-
 int WasteLevelTask:: readLevel(){
     digitalWrite(this->pinTrig, HIGH);
     delayMicroseconds(10);
