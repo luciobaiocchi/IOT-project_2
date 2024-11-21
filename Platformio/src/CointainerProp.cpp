@@ -8,7 +8,10 @@ ContainerProp::ContainerProp(){
 }
 
 void ContainerProp::setWasteLevel(int level){
-    this->contLevel = level;
+    this->contLevel = level;    
+    if (this->isFull()){
+        
+    }
 }
 
 void ContainerProp::setTempLevel(int level){
