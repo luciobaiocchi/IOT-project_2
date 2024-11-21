@@ -2,48 +2,46 @@
 #include "Arduino.h"
 #include "Costants.h"
 
-ContainerProp :: ContainerProp(){
+ContainerProp::ContainerProp(){
     this->allarm = false;
     this->contLevel = 0;
 }
 
-bool ContainerProp :: setWasteLevel(int level){
-    if ((this->contLevel +  level) <= MAX_CONT_LEVEL){
-        this->contLevel = level;
-        return true;
-    }
-    return false;
+void ContainerProp::setWasteLevel(int level){
+    this->contLevel = level;
 }
 
-void ContainerProp :: setTempLevel(int level){
-    if ((this->tempLevel +  level) <= MAX_TEMP){
+void ContainerProp::setTempLevel(int level){
+    if (level <= MAX_TEMP){
         this->contLevel = level;
     }else{
         this->setAllarm(true);
     }
 }
 
-bool ContainerProp ::  setAllarm(bool state){
+void ContainerProp::setAllarm(bool state){
     if(this->isAllarmOn() == state){
-        return false;
+    }else{
+        this->allarm = state;
     }
-    this->allarm = state;
 }
 
-int ContainerProp ::  getWasteLevel(){
+int ContainerProp::getWasteLevel(){
     return this->contLevel;
 }
 
-bool ContainerProp :: isFull(){
-    if (this->contLevel <= MAX_CONT_LEVEL){
-        return true;
-    }
+int ContainerProp::getTempLevel(){
+    return this->tempLevel;
 }
 
-bool ContainerProp :: isAllarmOn(){
+bool ContainerProp::isFull(){
+    return this->contLevel <= MAX_CONT_LEVEL;
+}
+
+bool ContainerProp::isAllarmOn(){
     return this->allarm;
 }
 
-bool ContainerProp :: genericAllarm(){
+bool ContainerProp::genericAllarm(){
     return(this->isAllarmOn() || this->isFull());
 }

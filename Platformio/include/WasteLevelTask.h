@@ -12,9 +12,8 @@ public:
     WasteLevelTask(int pinTrig, int pinEcho, ContainerProp container);  
     void init(int period);  
     void tick();
-    int readLevel();
-    bool isFull();
 private:
+    int readLevel();
     int pinTrig;
     int pinEcho;
     ContainerProp container;
