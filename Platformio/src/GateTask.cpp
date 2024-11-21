@@ -2,10 +2,10 @@
 #include "Arduino.h"
 #include "GateTask.h"
 
-GateTask::GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp container){
+GateTask::GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp container, LCDManager lcdManager){
     open = new GateButton(button1Pin);
     close = new GateButton(button2Pin);
-    gate = new Gate(pinServo);
+    gate = new Gate(pinServo, lcdManager);
     this->container = container;
 }
 

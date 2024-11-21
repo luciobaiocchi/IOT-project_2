@@ -9,6 +9,7 @@
 #include "ContainerProp.h"
 #include "WasteLevelTask.h"
 #include "AllarmTask.h"
+#include "LCDManager.h"
 
 int currentState;
 
@@ -20,13 +21,15 @@ void setup() {
   Serial.begin(9600);
   scheduler.init(50);
 
-  ContainerProp container = ContainerProp();
+  LCDManager lcdManager = LCDManager();
+  ContainerProp container = ContainerProp(lcdManager);
+
 
   /* Tasks initialization*/
-  Task* gateTask = new GateTask(7, 8, 5, container);
+  Task* gateTask = new GateTask(7, 8, 5, container, lcdManager);
   gateTask->init(100);
 
-  Task* lcdTask = new LCDTask();
+  Task* lcdTask = new LCDTask(lcdManager);
   lcdTask->init(150);
 
   Task* ledTask = new LedTask(3, 4);

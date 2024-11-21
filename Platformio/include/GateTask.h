@@ -6,12 +6,12 @@
 #include "Costants.h"
 #include "Gate.h"
 #include "ContainerProp.h"
-
+#include "LCDManager.h"
 
 
 class GateTask: public Task {
 public:
-  GateTask::GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp container);  
+  GateTask::GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp container, LCDManager lcdManager);  
   void init(int period);  
   void tick();
 private:

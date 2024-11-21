@@ -13,4 +13,11 @@
 #define MAX_TEMP 35
 #define MAX_CONT_LEVEL 100
 
+
+#define LCD_1 "PRESS OPEN TO ENTER WASTE"
+#define LCD_2 "PRESS CLOSE WHEN DONE"
+#define LCD_3 "WASTE RECEIVED"
+#define LCD_4 "CONTAINER FULL"
+#define LCD_5 "PROBLEM DETECTED"
+
 #endif

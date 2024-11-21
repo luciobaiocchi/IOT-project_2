@@ -2,9 +2,10 @@
 #include "Arduino.h"
 #include "Costants.h"
 
-ContainerProp :: ContainerProp(){
+ContainerProp :: ContainerProp(LCDManager lcdManager){
     this->allarm = false;
     this->contLevel = 0;
+    this->lcdManager = lcdManager;
 }
 
 bool ContainerProp :: setWasteLevel(int level){
@@ -28,6 +29,7 @@ int ContainerProp ::  getWasteLevel(){
 
 bool ContainerProp :: isFull(){
     if (this->contLevel <= MAX_CONT_LEVEL){
+        
         return true;
     }
 }

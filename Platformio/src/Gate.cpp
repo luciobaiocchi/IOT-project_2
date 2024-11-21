@@ -1,7 +1,8 @@
 #include "Gate.h"
 
-Gate::Gate(int pinServo){
+Gate::Gate(int pinServo, LCDManager lcdManager){
     this->pinServo = pinServo;
+    this->lcdManager = lcdManager;
 }
 
 void Gate::closeGate(){
@@ -10,6 +11,7 @@ void Gate::closeGate(){
         servo->write(1500);
         servo->detach();
         waitTheT2 = millis();
+        lcdManager.setMessage(LCD_3);
     }
     
 }
@@ -21,6 +23,7 @@ void Gate::openGateButton(){
         servo->detach();
         timeGateOpen = millis();
         waitTheT2 = 0;
+        lcdManager.setMessage(LCD_2);
     }
     
 }
@@ -40,7 +43,11 @@ bool Gate::timeOpenElapsed(){
 }
 
 bool Gate::timeAfterCloseElapsed(){
-    return (millis() - waitTheT2) >= T2;
+    if ((millis() - waitTheT2) >= T2){
+        lcdManager.setMessage(LCD_1);
+        return true;
+    }
+    return false;
 }
 
 int Gate::getState(){

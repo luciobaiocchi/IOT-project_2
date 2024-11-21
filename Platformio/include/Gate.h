@@ -4,6 +4,7 @@
 #include <ServoTimer2.h>  
 #include "Costants.h"
 #include "Arduino.h"
+#include "LCDManager.h"
 
 
 class Gate{
@@ -13,9 +14,9 @@ private:
     int pinServo;
     long timeGateOpen;
     long waitTheT2;
-    
+    LCDManager lcdManager;
 public:
-    Gate(int pinServo);
+    Gate(int pinServo, LCDManager lcdManager);
     int getState();
     void closeGate();
     void openGateButton();
