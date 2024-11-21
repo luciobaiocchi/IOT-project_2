@@ -10,6 +10,7 @@ WasteLevelTask :: WasteLevelTask (int pinTrig, int pinEcho, ContainerProp contai
 }
 
 void WasteLevelTask :: init(int period){
+    Serial.begin(9600);
     Task::init(period);
 }
 
@@ -25,5 +26,6 @@ int WasteLevelTask:: readLevel(){
     // Read the result:
     int duration = pulseIn(pinEcho, HIGH);
     int dist = duration / 58;
+    Serial.println(dist);
     return map(dist , 0, MAX_CONT_LEVEL, 100, 0);
 }
