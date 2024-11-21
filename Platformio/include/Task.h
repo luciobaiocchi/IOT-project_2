@@ -3,20 +3,20 @@
 
 class Task {
   int myPeriod;
-  int timeElapsed;
+  int timeOpenElapsed;
   
 public:
   virtual void init(int period){
     myPeriod = period;  
-    timeElapsed = 0;
+    timeOpenElapsed = 0;
   }
 
   virtual void tick() = 0;
 
   bool updateAndCheckTime(int basePeriod){
-    timeElapsed += basePeriod;
-    if (timeElapsed >= myPeriod){
-      timeElapsed = 0;
+    timeOpenElapsed += basePeriod;
+    if (timeOpenElapsed >= myPeriod){
+      timeOpenElapsed = 0;
       return true;
     } else {
       return false; 

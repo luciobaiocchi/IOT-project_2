@@ -2,16 +2,23 @@
 #include "Arduino.h"
 #include "Costants.h"
 
-ContainerProp::ContainerProp(){
+ContainerProp::ContainerProp()
+{
+}
+
+ContainerProp::ContainerProp(LCDManager lcdManager)
+{
     this->allarm = false;
     this->contLevel = 0;
+    this->lcdManager = lcdManager;
 }
 
 void ContainerProp::setWasteLevel(int level){
-    this->contLevel = level;    
+    this->contLevel = level;
     if (this->isFull()){
-        
+        lcdManager.setMessage(LCD_4);
     }
+    
 }
 
 void ContainerProp::setTempLevel(int level){
@@ -19,6 +26,7 @@ void ContainerProp::setTempLevel(int level){
         this->contLevel = level;
     }else{
         this->setAllarm(true);
+        lcdManager.setMessage(LCD_5);
     }
 }
 
