@@ -31,10 +31,7 @@ void SerialCommTask::receive(){
 
 void SerialCommTask::send(){
     if (MsgService.isMsgAvailable()) {
-        Msg* msg = MsgService.receiveMsg();    
-        if (msg->getContent() == (String)currentState){
-            currentState = GATE_AVAILABLE;
-        }
-        delete msg;
+        const String message = "L" + (String)this->container.getWasteLevel() + "T" + (String)this->;
+        MsgService.sendMsg(message);   
     }
 }

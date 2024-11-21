@@ -21,12 +21,8 @@ void AllarmTask::init(int period){
 }
 
 void AllarmTask::tick(){
-    if (isTempOverMax()){
-        this->container.setAllarm(true);
-    }
+    int t = dht.readTemperature();
+    this->container.setTempLevel(t);
 }
 
-bool AllarmTask::isTempOverMax(){
-    int t = dht.readTemperature();
-    return(t > MAX_TEMP);
-}
+

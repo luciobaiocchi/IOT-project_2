@@ -8,12 +8,15 @@ public:
   ContainerProp();
   bool genericAllarm();
   bool setWasteLevel(int level);
+  void setTempLevel(int level);
   bool setAllarm(bool state);
   int getWasteLevel();
+  int getTempLevel();
   bool isFull();
   bool isAllarmOn();
 private:
   int contLevel;
+  int tempLevel;
   bool allarm;
 };
 
