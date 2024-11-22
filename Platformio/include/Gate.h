@@ -8,7 +8,7 @@
 
 class Gate {
 private:
-    ServoTimer2* servo;
+    ServoTimer2 servo;
     enum State { CLOSE, OPEN } currentState;
     int pinServo;
     long timeGateOpen;

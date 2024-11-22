@@ -14,7 +14,7 @@ void SerialCommTask::tick(){
     if (container.isAllarmOn() || container.isFull()){
         receive();
     }else{
-        send();
+        // send();
     }
 }
 
