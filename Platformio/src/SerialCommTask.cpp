@@ -19,7 +19,15 @@ void SerialCommTask::tick(){
 }
 
 void SerialCommTask::receive(){
-    
+    if (MsgService.isMsgAvailable()) {
+        Msg* msg = MsgService.receiveMsg();    
+        if (container.isAllarmOn() && msg->getContent() == "RESTORE" ){
+            /* Metodo in container per settare l'allarme off*/
+        }else if(container.isFull() && msg->getContent() == "EMPTY"){
+            /* Metodo per svuotare */
+        }
+    delete msg;
+  }
 
 }
 
