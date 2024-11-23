@@ -24,41 +24,37 @@ void setup() {
 
 
   /* Tasks initialization*/
-  Task* gateTask = new GateTask(8, 9, 5, container, lcdManager);
-  gateTask->init(150);
+  //Task* gateTask = new GateTask(8, 9, 5, container, lcdManager);
+  //gateTask->init(150);
 
   Task* lcdTask = new LCDTask(lcdManager);
-  lcdTask->init(200);
+  lcdTask->init(50);
 
   Task* ledTask = new LedTask(4, 5, container);
   ledTask->init(300);
 
   //Task* serialCommTask = new SerialCommTask(container);
-  // serialCommTask->init(250);
+  //serialCommTask->init(250);
 
-  // Task* proxTask = new ProximityTask(2);
-  // proxTask->init(500);
-/* 
+  Task* proxTask = new ProximityTask(2, lcdManager);
+  proxTask->init(500);
  
-
-  
   Task* wasteLevelTast = new WasteLevelTask(12, 11, container);
   wasteLevelTast->init(400);
 
-  Task* allarmTask = new AllarmTask(A5, container);
-  wasteLevelTast->init(300);
+  //Task* allarmTask = new AllarmTask(A5, container);
+  //wasteLevelTast->init(300);
 
   
   
   
-  scheduler.addTask(wasteLevelTast);
-  scheduler.addTask(allarmTask); */
-  scheduler.addTask(gateTask);
+  //scheduler.addTask(wasteLevelTast);
+  //scheduler.addTask(allarmTask); 
+  //scheduler.addTask(gateTask);
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
   //scheduler.addTask(serialCommTask);
- //  scheduler.addTask(proxTask);
-
+  scheduler.addTask(proxTask);
 }
 
 void loop() {
