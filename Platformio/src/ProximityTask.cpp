@@ -58,7 +58,7 @@ void ProximityTask::sleep(){
     // Abilita l'interrupt sul pin specifico
     enableInterrupt(pinSensor, interruptHandler, RISING);
     lcdManager.sleep();
-    Serial.println("sleep");
+    //Serial.println("sleep");
     delay(20);
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
     sleep_enable(); 
