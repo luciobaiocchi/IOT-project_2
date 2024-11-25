@@ -1,7 +1,6 @@
 #include "Arduino.h"
 #include "Scheduler.h"
 #include "GateTask.h"
-#include "LCDTask.h"
 #include "Costants.h"
 #include "LedTask.h"
 #include "ProximityTask.h"
@@ -27,8 +26,6 @@ void setup() {
   Task* gateTask = new GateTask(8, 9, 5, container, lcdManager);
   gateTask->init(150);
 
-  Task* lcdTask = new LCDTask(lcdManager);
-  lcdTask->init(500);
 
   Task* ledTask = new LedTask(4, 5, container);
   ledTask->init(300);
@@ -51,7 +48,6 @@ void setup() {
   scheduler.addTask(wasteLevelTast);
   scheduler.addTask(allarmTask); 
   scheduler.addTask(gateTask);
-  scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
   //scheduler.addTask(serialCommTask);
   scheduler.addTask(proxTask);

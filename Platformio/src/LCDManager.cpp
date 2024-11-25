@@ -3,46 +3,30 @@
 LCDManager::LCDManager(){
     Serial.begin(9600);
     this->lcdStatus = true;
-    messageToDisplay = LCD_1;
+
+    currentMessage = "";
+    lcd = new LiquidCrystal_I2C(0x27, 16, 2);
 }
 
 void LCDManager::setMessage(String msg){
-    messageToDisplay = msg;
+    currentMessage = msg;
+    lcd->clear(); 
+    lcd->print(msg.substring(0, 16));
+    lcd->setCursor(0, 1);
+    lcd->print(msg.substring(16, msg.length())); 
+    lcd->setCursor(0, 0);
+    delay(50);
 }
 
 String LCDManager::getMessage(){
-    return messageToDisplay;
+    return currentMessage;
 }
 
 void LCDManager::sleep(){
     lcd->clear();
-    //Serial.println("LCD cleared");
     lcd->noBacklight();
-    this->lcdStatus = false;
-    //Serial.println("msleep");
 }
 
 void LCDManager::wakeUp(){
-    lcd->backlight();  
-    //Serial.println("mwake");
-    lcd->clear(); 
-    lcd->print(this->messageToDisplay.substring(0, 16));
-    lcd->setCursor(0, 1);
-    lcd->print(this->messageToDisplay.substring(16, this->messageToDisplay.length())); 
-    lcd->setCursor(0, 0);
-    delay(50);
-    this->lcdStatus = true;
+    setMessage(currentMessage);
 }
-
-bool LCDManager::isLcdOn(){
-    return this->lcdStatus;
-}
-
-void LCDManager::setLcd(LiquidCrystal_I2C* lcd){
-    this->lcd = lcd;
-}
-
-
-
-
-

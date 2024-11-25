@@ -44,10 +44,7 @@ void ProximityTask::tick(){
 boolean ProximityTask::checkEndTime(unsigned long actualTime){
     int timeRemanining = TIME_DEEPSLEEP - (actualTime - initTime);
     //Serial.println(timeRemanining);
-    if (timeRemanining <= 0){
-        return true;
-    }
-    return false;
+    return timeRemanining <= 0;
 }
 
 void interruptHandler() {
