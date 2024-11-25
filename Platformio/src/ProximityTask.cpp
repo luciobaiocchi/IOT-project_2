@@ -18,6 +18,7 @@ void ProximityTask::init(int period){
 void ProximityTask::tick(){
     val = digitalRead(pinSensor);  // read input value
     if (val == HIGH) {            // check if the input is HIGH
+    Serial.println("RILEVATO");
         this->initTime = millis();
     }else if (val == LOW && checkEndTime(millis())) {
         enableInterrupt(pinSensor, NULL, RISING);

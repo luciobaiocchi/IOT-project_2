@@ -5,7 +5,7 @@ Gate::Gate(int pinServo, LCDManager& lcdManager)
     currentState = CLOSE;
     this->pinServo = pinServo;
     servo.attach(pinServo);
-    servo.write(750);
+    servo.write(1500);
     delay(100);
     servo.detach();
     

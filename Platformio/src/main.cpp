@@ -36,8 +36,8 @@ void setup() {
   //Task* serialCommTask = new SerialCommTask(container);
   // serialCommTask->init(250);
 
-  // Task* proxTask = new ProximityTask(2);
-  // proxTask->init(500);
+  /*Task* proxTask = new ProximityTask(2);
+  proxTask->init(500);*/
 /* 
  
 
@@ -57,7 +57,7 @@ void setup() {
   scheduler.addTask(lcdTask);
   scheduler.addTask(ledTask);
   //scheduler.addTask(serialCommTask);
- //  scheduler.addTask(proxTask);
+ // scheduler.addTask(proxTask);
 
 }
 
