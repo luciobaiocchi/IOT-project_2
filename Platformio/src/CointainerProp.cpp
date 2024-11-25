@@ -3,6 +3,7 @@
 #include "Costants.h"
 
 ContainerProp::ContainerProp(){
+    Serial.begin(9600);
     this->allarm = false;
     this->contLevel = 0;
 }
@@ -15,10 +16,10 @@ ContainerProp::ContainerProp(LCDManager lcdManager){
 
 void ContainerProp::setWasteLevel(int level){
     this->contLevel = level;
+    //Serial.println(level);
     if (this->isFull()){
         lcdManager.setMessage(LCD_4);
     }
-    
 }
 
 void ContainerProp::setTempLevel(int level){

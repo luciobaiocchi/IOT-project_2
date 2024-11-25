@@ -5,6 +5,7 @@ LCDTask::LCDTask(LCDManager& manager) : lcdManager(manager) {
     lcd->init();
     lcd->setCursor(0, 0);
     lcd->backlight();
+    lcdManager.setLcd(lcd);
     messageDisplayed = "";
 }
 
@@ -20,7 +21,7 @@ void LCDTask::tick() {
 }
 
 void LCDTask::modifiedPrint(String msg) {
-    Serial.println(msg);
+    //Serial.println("modifiedMessge");
     lcd->clear(); 
     lcd->print(msg.substring(0, 16));
     lcd->setCursor(0, 1);
