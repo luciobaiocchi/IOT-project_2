@@ -10,12 +10,12 @@
 
 class AllarmTask: public Task {
 public:
-    AllarmTask(int pinTemp, ContainerProp container, LCDManager& lcdManager);  
+    AllarmTask(int pinTemp, ContainerProp& container, LCDManager& lcdManager);  
     void init(int period);  
     void tick();
 private:
     int pinTemp;
-    ContainerProp container;
+    ContainerProp& container;
     LCDManager& lcdManager;
 };
 

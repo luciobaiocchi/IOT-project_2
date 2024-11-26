@@ -11,8 +11,8 @@ private:
     Servo servo;
     enum State { CLOSE, OPEN } currentState;
     int pinServo;
-    long timeGateOpen;
-    long timeAfterClose;
+    int tickGateOpen;
+    int tickAfterClose;
     LCDManager& lcdManager; // Campo membro come riferimento
 
 public:
@@ -23,6 +23,7 @@ public:
     void openGateUser();
     bool timeOpenElapsed();
     bool timeAfterCloseElapsed();
+    void decrementTick();
 };
 
 #endif

@@ -6,56 +6,34 @@ Gate::Gate(int pinServo, LCDManager& lcdManager)
     this->pinServo = pinServo;
     servo.attach(pinServo);
     servo.write(90);
-    //delay(100);
-   // servo->detach();
-    
+
 }
 
 void Gate::closeGate() {
-    if (currentState == OPEN) {
-        //servo->attach(pinServo);
-        servo.write(90);
-        //delay(100);
-        //servo->detach(); 
-        currentState = CLOSE;
-        timeAfterClose = millis();
-        lcdManager.setMessage(LCD_3);
-    }
-    if (timeAfterCloseElapsed()){
-        lcdManager.setMessage(LCD_1);
-    }
+    
     
 }
 
 void Gate::openGateButton() {
-    if (currentState == CLOSE) {
-        currentState = OPEN;
-        //servo->attach(pinServo);
-        servo.write(180);
-        //delay(100);
-        //servo->detach();
-        timeGateOpen = millis();
-        lcdManager.setMessage(LCD_2);
-    }
+
+    
 }
 
 void Gate::openGateUser() {
-    if (currentState == CLOSE) {
-        currentState = OPEN;
-        //servo->attach(pinServo);
-        servo.write(180);
-        //delay(100);
-        //servo->detach();
-        timeGateOpen = millis();
-    }
+
 }
 
 bool Gate::timeOpenElapsed() {
-    return (millis() - timeGateOpen) >= MAX_TIME_OPEN;
+    return tickGateOpen <= 0;
 }
 
 bool Gate::timeAfterCloseElapsed() {
-    return (millis() - timeAfterClose) >= T2;
+    return tickGateOpen <= 0;
+}
+
+void Gate::decrementTick(){
+    tickAfterClose--;
+    tickGateOpen--;
 }
 
 int Gate::getState() {

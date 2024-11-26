@@ -3,7 +3,7 @@
 #include "Costants.h"
 
 ContainerProp::ContainerProp(){
-    Serial.begin(9600);
+    //Serial.begin(9600);
     this->allarm = false;
     this->contLevel = 0;
 }
@@ -47,7 +47,8 @@ int ContainerProp::getTempLevel(){
 }
 
 bool ContainerProp::isFull(){
-    return this->contLevel >= MAX_CONT_LEVEL;
+    //return this->contLevel >= MAX_PERC_LEVEL;
+    return false;
 }
 
 bool ContainerProp::isAllarmOn(){

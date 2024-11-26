@@ -4,19 +4,21 @@
 #include "Task.h"
 #include "Costants.h"
 #include "ContainerProp.h"
+#include "LCDManager.h"
 
 extern int currentState;
 
 class WasteLevelTask: public Task {
 public:
-    WasteLevelTask(int pinTrig, int pinEcho, ContainerProp container);  
+    WasteLevelTask(int pinTrig, int pinEcho, ContainerProp& container, LCDManager& lcdManager);  
     void init(int period);  
     void tick();
 private:
     int readLevel();
     int pinTrig;
     int pinEcho;
-    ContainerProp container;
+    ContainerProp& container;
+    LCDManager& lcdManager;
 };
 
 #endif

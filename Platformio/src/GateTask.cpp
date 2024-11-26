@@ -15,9 +15,5 @@ void GateTask::init(int period) {
 }
 
 void GateTask::tick() {
-    if (!container.genericAllarm() && open->isPressed() && gate->timeAfterCloseElapsed()) {
-        gate->openGateButton();
-    } else if (close->isPressed() || gate->timeOpenElapsed()) {
-        gate->closeGate();
-    }
+    
 }

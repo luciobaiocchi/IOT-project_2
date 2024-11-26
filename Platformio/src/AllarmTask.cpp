@@ -5,13 +5,12 @@
 #include "Task.h"
 #include "ContainerProp.h"
 
-#define DHTPIN 6
+#define DHTPIN 2
 #define DHTTYPE DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
 
-AllarmTask::AllarmTask(int pinTemp, ContainerProp container, LCDManager& LCDManager) : lcdManager(LCDManager){
-    Serial.begin(9600);
+AllarmTask::AllarmTask(int pinTemp, ContainerProp& container, LCDManager& LCDManager) : container(container), lcdManager(LCDManager){
     this->pinTemp = pinTemp;
     this->container = container;
     pinMode(pinTemp, INPUT);
@@ -23,14 +22,14 @@ void AllarmTask::init(int period){
 }
 
 void AllarmTask::tick(){
-    float t = dht.readTemperature();
+     float t = dht.readTemperature();
     if (isnan(t)) {
         Serial.println("Failed to read from DHT sensor!");
     } else {
-        Serial.print("Temperature: ");
-        Serial.println(t);
+        //Serial.print("Temperature: ");
+        //Serial.println(t);
         this->container.setTempLevel(t);
-    }
+    } 
     Serial.println("tick");
 }
 
