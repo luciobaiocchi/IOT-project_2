@@ -15,9 +15,9 @@
 Scheduler scheduler;
 
 void setup() {
-  Serial.begin(9600);
   scheduler.init(50);
-
+  Serial.begin(9600);
+  
   LCDManager lcdManager;
   ContainerProp container(lcdManager);
 
@@ -27,30 +27,30 @@ void setup() {
   gateTask->init(150);
 
 
-  Task* ledTask = new LedTask(4, 5, container);
-  ledTask->init(300);
+ /*Task* ledTask = new LedTask(3, 4, container);
+  ledTask->init(300);*/
 
   //Task* serialCommTask = new SerialCommTask(container);
   //serialCommTask->init(250);
 
-  Task* proxTask = new ProximityTask(2, lcdManager);
+  /*Task* proxTask = new ProximityTask(2, lcdManager);
   proxTask->init(500);
  
   Task* wasteLevelTast = new WasteLevelTask(12, 11, container);
   wasteLevelTast->init(500);
 
-  Task* allarmTask = new AllarmTask(6, container);
+  Task* allarmTask = new AllarmTask(6, container, lcdManager);
   allarmTask->init(300);
 
+  */
   
   
-  
-  scheduler.addTask(wasteLevelTast);
-  scheduler.addTask(allarmTask); 
+  //scheduler.addTask(wasteLevelTast);
+  //scheduler.addTask(allarmTask); 
   scheduler.addTask(gateTask);
-  scheduler.addTask(ledTask);
+  //scheduler.addTask(ledTask);
   //scheduler.addTask(serialCommTask);
-  scheduler.addTask(proxTask);
+  //scheduler.addTask(proxTask);
 }
 
 void loop() {

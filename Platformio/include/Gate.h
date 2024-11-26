@@ -2,13 +2,13 @@
 #define __GATE__
 
 #include "Arduino.h"
-#include <ServoTimer2.h>
+#include "Servo.h"
 #include "Costants.h"
 #include "LCDManager.h"
 
 class Gate {
 private:
-    ServoTimer2 servo;
+    Servo servo;
     enum State { CLOSE, OPEN } currentState;
     int pinServo;
     long timeGateOpen;

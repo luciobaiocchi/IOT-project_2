@@ -1,22 +1,22 @@
 #include "Gate.h"
 
 Gate::Gate(int pinServo, LCDManager& lcdManager) 
-    : lcdManager(lcdManager) { // Inizializzazione del riferimento
+    : lcdManager(lcdManager) { 
     currentState = CLOSE;
     this->pinServo = pinServo;
     servo.attach(pinServo);
-    servo.write(1500);
-    delay(100);
-    servo.detach();
+    servo.write(90);
+    //delay(100);
+   // servo->detach();
     
 }
 
 void Gate::closeGate() {
     if (currentState == OPEN) {
-        servo.attach(pinServo);
-        servo.write(1500);
-        delay(100);
-        servo.detach(); 
+        //servo->attach(pinServo);
+        servo.write(90);
+        //delay(100);
+        //servo->detach(); 
         currentState = CLOSE;
         timeAfterClose = millis();
         lcdManager.setMessage(LCD_3);
@@ -30,10 +30,10 @@ void Gate::closeGate() {
 void Gate::openGateButton() {
     if (currentState == CLOSE) {
         currentState = OPEN;
-        servo.attach(pinServo);
-        servo.write(750);
-        delay(100);
-        servo.detach();
+        //servo->attach(pinServo);
+        servo.write(180);
+        //delay(100);
+        //servo->detach();
         timeGateOpen = millis();
         lcdManager.setMessage(LCD_2);
     }
@@ -42,10 +42,10 @@ void Gate::openGateButton() {
 void Gate::openGateUser() {
     if (currentState == CLOSE) {
         currentState = OPEN;
-        servo.attach(pinServo);
-        servo.write(2250);
-        delay(100);
-        servo.detach();
+        //servo->attach(pinServo);
+        servo.write(180);
+        //delay(100);
+        //servo->detach();
         timeGateOpen = millis();
     }
 }

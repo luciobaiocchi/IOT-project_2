@@ -10,7 +10,7 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 
-AllarmTask :: AllarmTask(int pinTemp, ContainerProp container){
+AllarmTask::AllarmTask(int pinTemp, ContainerProp container, LCDManager& LCDManager) : lcdManager(LCDManager){
     Serial.begin(9600);
     this->pinTemp = pinTemp;
     this->container = container;

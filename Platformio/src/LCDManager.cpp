@@ -3,9 +3,10 @@
 LCDManager::LCDManager(){
     Serial.begin(9600);
     this->lcdStatus = true;
-
     currentMessage = "";
     lcd = new LiquidCrystal_I2C(0x27, 16, 2);
+    lcd->init();
+    lcd->backlight();
 }
 
 void LCDManager::setMessage(String msg){
