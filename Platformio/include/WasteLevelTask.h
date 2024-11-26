@@ -14,6 +14,7 @@ public:
     void init(int period);  
     void tick();
 private:
+    int var;
     int readLevel();
     int pinTrig;
     int pinEcho;

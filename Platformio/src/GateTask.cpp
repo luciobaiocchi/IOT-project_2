@@ -17,28 +17,24 @@ void GateTask::init(int period) {
 
 void GateTask::tick() {
     if (!container.genericAllarm()){
-        Serial.print("STATE: ");
-        Serial.println(gate->getState());
         switch (gate->getState()){
         case 1:
             if (open->isPressed()){
-                timer.startTimer(60);
+                timer.startTimer(30);
                 gate->openGate();
             }
             break;
         case 3:
             timer.dec();
             if (timer.isTimeElapsed()){
-                Serial.println("envrjvbtrbvujtvbutrbiktrbhvbjhbgjhbvtgutbtvogtbtrgihtgiht efkjcr");
                 gate->setState(1);
             }
             break;
         case 2:
             timer.dec();
-            Serial.println("igogioigoigoigoigoigoigoiogiogiogiogigo");
             if (timer.isTimeElapsed() || close->isPressed()){
                 gate->closeGate();
-                timer.startTimer(100);
+                timer.startTimer(50);
             }
             break;
             

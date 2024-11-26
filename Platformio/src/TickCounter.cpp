@@ -14,6 +14,5 @@ bool TickCounter::isTimeElapsed(){
 }
 
 void TickCounter::dec(){
-    Serial.println(tmpTime);
     tmpTime--;
 }
