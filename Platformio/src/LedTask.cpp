@@ -18,6 +18,4 @@ void LedTask::tick(){
         greenLed->switchOn();
         redLed->switchOff();
     }
-    
-    
 }

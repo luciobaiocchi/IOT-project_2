@@ -6,11 +6,7 @@ Gate::Gate(int pinServo) {
     servo.attach(pinServo);
     servo.write(90);
     currentDir = 12002;
-
 }
-
-
-    
 
 int Gate::getState() {
     return currentState;

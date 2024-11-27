@@ -31,14 +31,10 @@ bool Scheduler::addTask(Task* task){
   
 void Scheduler::schedule(){  
   while (!timerFlag){ 
-    //Serial.println("BLOCCATO");  
   }
   timerFlag = false;
-
   for (int i = 0; i < nTasks; i++){
-    
     if (taskList[i]->updateAndCheckTime(basePeriod)){
-      
       taskList[i]->tick();
     }
   }

@@ -18,7 +18,7 @@ void TickCounter::dec(){
 }
 
 void TickCounter::printRemaining(){
-    Serial.print("REMAINING");
-    Serial.println(tmpTime);
+    //Serial.print("REMAINING");
+    //Serial.println(tmpTime);
 }
 

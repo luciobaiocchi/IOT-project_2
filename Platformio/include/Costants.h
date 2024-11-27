@@ -10,7 +10,7 @@
 #define MAX_TIME_OPEN 5000
 #define T2 3000
 #define TIME_DEEPSLEEP 10000
-#define MAX_TEMP 30
+#define MAX_TEMP 21
 #define MAX_CONT_LEVEL 35
 #define SONAR_HEIGHT 5
 #define MAX_PERC_LEVEL 100

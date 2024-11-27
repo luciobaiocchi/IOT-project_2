@@ -24,17 +24,17 @@ void ProximityTask::init(int period){
 }
 
 void ProximityTask::tick(){
-    Serial.println("tick");
+    //Serial.println("tack");
     tickToSleep.printRemaining();
 
     val = digitalRead(pinSensor);  // read input value
     if (val != detectedStatus) {  
         detectedStatus = val;          // check if the input is HIGH
         if (detectedStatus){
-            Serial.println("m");
-            tickToSleep.startTimer(500); // da mettere a 20 !!!!!!!!!!!
+            //Serial.println("m");
+            tickToSleep.startTimer(200); // da mettere a 20 !!!!!!!!!!!
         }else{
-            Serial.println("f");
+            //Serial.println("f");
         }
     }
     tickToSleep.dec();
@@ -44,6 +44,7 @@ void ProximityTask::tick(){
 }
 
 void interruptHandler() {
+    disableInterrupt(2);
     interruptFlag = true;
 }
 
@@ -52,12 +53,11 @@ void ProximityTask::sleep(){
     enableInterrupt(pinSensor, interruptHandler, RISING);
     //lcdManager.setMessage("sleep");
     lcdManager.sleep();
-    Serial.println("sleep");
+    //Serial.println("sleep");
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
     sleep_enable(); 
     sleep_mode();   
     sleep_disable();
     lcdManager.wakeUp();
     // Disabilita l'interrupt sul pin specifico
-    disableInterrupt(pinSensor);
 }

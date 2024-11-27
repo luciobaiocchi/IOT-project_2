@@ -28,7 +28,7 @@ void setup() {
 
 
   Task* ledTask = new LedTask(3, 4, container);
-  ledTask->init(300);
+  ledTask->init(150);
 
   //Task* serialCommTask = new SerialCommTask(container);
   //serialCommTask->init(250);
@@ -36,15 +36,13 @@ void setup() {
   Task* proxTask = new ProximityTask(2, lcdManager);
   proxTask->init(500);
  
+  Task* allarmTask = new AllarmTask(A1, container, lcdManager);
+  allarmTask->init(1000);
+  
   Task* wasteLevelTast = new WasteLevelTask(12, 11, container);
-  wasteLevelTast->init(300);
+  wasteLevelTast->init(400);
 
-  Task* allarmTask = new AllarmTask(6, container, lcdManager);
-  allarmTask->init(300);
 
-  
-  
-  
   scheduler.addTask(wasteLevelTast);
   scheduler.addTask(allarmTask); 
   scheduler.addTask(gateTask);

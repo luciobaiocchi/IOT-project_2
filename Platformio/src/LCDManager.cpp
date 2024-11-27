@@ -1,7 +1,6 @@
 #include "LCDManager.h"
 
 LCDManager::LCDManager(){
-    //Serial.begin(9600);
     currentMessage[0] = '\0';
 
     lcd = new LiquidCrystal_I2C(0x27, 16, 2);
@@ -35,7 +34,7 @@ void LCDManager::setMessage(const char* msg) {
     lcd->print(line2);
 
     // Stampa su Serial Monitor
-    Serial.println(currentMessage);
+    //Serial.println(currentMessage);
     }
 }
 

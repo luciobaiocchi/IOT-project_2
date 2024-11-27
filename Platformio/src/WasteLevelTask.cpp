@@ -20,11 +20,7 @@
 
     void WasteLevelTask :: tick(){
         Serial.begin(115200);
-        this->container.setWasteLevel(this->readLevel());
-        Serial.end();
-
-        
-    
+        this->container.setWasteLevel(this->readLevel()); 
     }
 
     int WasteLevelTask:: readLevel(){
