@@ -18,6 +18,7 @@ public:
 private:
     Gate* gate;
     ContainerProp& container;  
+    LCDManager& lcdManager;
     Button* open;
     Button* close;
 };

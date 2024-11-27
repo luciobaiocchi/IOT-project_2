@@ -1,7 +1,6 @@
 #include "Gate.h"
 
-Gate::Gate(int pinServo, LCDManager& lcdManager) 
-    : lcdManager(lcdManager) { 
+Gate::Gate(int pinServo) { 
     currentState = 1;
     this->pinServo = pinServo;
     servo.attach(pinServo);
@@ -27,12 +26,13 @@ void Gate::closeGate(){
 
 void Gate::move(int dir){
     switch (dir){
-    case 90:
-        currentState = 3;
-        break;
-    case 180:
-        currentState = 2;
-    }
+        case 90:
+            currentState = 3;
+            break;
+        case 180:
+            currentState = 2;
+            break;
+        }
     if (dir != currentDir){
         servo.write(dir);
         currentDir = dir;
