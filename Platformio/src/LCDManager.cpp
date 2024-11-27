@@ -3,6 +3,7 @@
 LCDManager::LCDManager(){
     //Serial.begin(9600);
     currentMessage[0] = '\0';
+
     lcd = new LiquidCrystal_I2C(0x27, 16, 2);
     lcd->init();
     lcd->backlight();
@@ -11,7 +12,7 @@ LCDManager::LCDManager(){
 void LCDManager::setMessage(const char* msg) {
     if (strcmp(currentMessage, msg) != 0)
     {
-        // Copia massimo 32 caratteri (16 per riga) con terminatore
+    // Copia massimo 32 caratteri (16 per riga) con terminatore
     strncpy(currentMessage, msg, sizeof(currentMessage) - 1);
     currentMessage[sizeof(currentMessage) - 1] = '\0'; // Assicura il terminatore
 
@@ -36,8 +37,6 @@ void LCDManager::setMessage(const char* msg) {
     // Stampa su Serial Monitor
     Serial.println(currentMessage);
     }
-    
-    
 }
 
 
@@ -45,11 +44,14 @@ String LCDManager::getMessage(){
     return currentMessage;
 }
 
-void LCDManager::sleep(){
-    lcd->clear();
+void LCDManager::sleep() { 
+    // Spegni la retroilluminazione
+    lcd->noDisplay();
     lcd->noBacklight();
 }
 
-void LCDManager::wakeUp(){
-    setMessage(currentMessage);
+void LCDManager::wakeUp() {
+    // Riattiva la retroilluminazione
+    lcd->display();
+    lcd->backlight();
 }
