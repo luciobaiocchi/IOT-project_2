@@ -3,15 +3,14 @@
 #include "Costants.h"
 
 ContainerProp::ContainerProp(){
-    Serial.begin(9600);
+    //Serial.begin(9600);
     this->allarm = false;
     this->contLevel = 0;
 }
 
-ContainerProp::ContainerProp(LCDManager lcdManager){
+ContainerProp::ContainerProp(LCDManager& lcdManager) : lcdManager(lcdManager){
     this->allarm = false;
     this->contLevel = 0;
-    this->lcdManager = lcdManager;
 }
 
 void ContainerProp::setWasteLevel(int level){

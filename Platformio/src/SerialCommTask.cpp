@@ -1,8 +1,7 @@
 #include "SerialCommTask.h"
 #include "ContainerProp.h"
 
-SerialCommTask::SerialCommTask(ContainerProp container){
-    this->container = container;
+SerialCommTask::SerialCommTask(ContainerProp container) : container(container){
     MsgService.init();
 }
 

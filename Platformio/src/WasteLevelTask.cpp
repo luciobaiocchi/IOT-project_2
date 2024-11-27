@@ -6,7 +6,7 @@
     const float temperature = 20;
     const float vs = 331.45 + 0.62*temperature;
 
-    WasteLevelTask :: WasteLevelTask (int pinTrig, int pinEcho, ContainerProp& container, LCDManager& lcdManager) : container(container), lcdManager(lcdManager){
+    WasteLevelTask :: WasteLevelTask (int pinTrig, int pinEcho, ContainerProp& container) : container(container){
         this->pinTrig = pinTrig;
         this->pinEcho = pinEcho;
     }

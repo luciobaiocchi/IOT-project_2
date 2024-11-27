@@ -1,7 +1,6 @@
 #include "Gate.h"
 
-Gate::Gate(int pinServo, LCDManager& lcdManager) 
-    : lcdManager(lcdManager) { 
+Gate::Gate(int pinServo) { 
     currentState = 1;
     this->pinServo = pinServo;
     servo.attach(pinServo);

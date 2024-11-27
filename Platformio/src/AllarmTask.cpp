@@ -12,7 +12,6 @@ DHT dht(DHTPIN, DHTTYPE);
 
 AllarmTask::AllarmTask(int pinTemp, ContainerProp& container, LCDManager& LCDManager) : container(container), lcdManager(LCDManager){
     this->pinTemp = pinTemp;
-    this->container = container;
     pinMode(pinTemp, INPUT);
 }
 

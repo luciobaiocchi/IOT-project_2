@@ -7,12 +7,11 @@
 
 class LCDManager {
 private:
-    bool lcdStatus;
     LiquidCrystal_I2C* lcd; 
-    String currentMessage;
+    char currentMessage[33];
 public:
     LCDManager();
-    void setMessage(String msg);
+    void setMessage(const char* msg);
     String getMessage();
     void sleep();
     void wakeUp();
