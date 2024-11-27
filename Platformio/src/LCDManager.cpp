@@ -30,5 +30,6 @@ void LCDManager::sleep(){
 }
 
 void LCDManager::wakeUp(){
+    lcd->backlight();
     setMessage(currentMessage);
 }
