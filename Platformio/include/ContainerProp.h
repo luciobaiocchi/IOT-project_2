@@ -6,7 +6,6 @@
 
 class ContainerProp {
 public: 
-  ContainerProp();
   ContainerProp(LCDManager& lcdManager);
   bool genericAllarm();
   void setWasteLevel(int level);
@@ -19,6 +18,7 @@ public:
 private:
   LCDManager& lcdManager;
   int contLevel;
+  int tempCount;
   int tempLevel;
   bool allarm;
 };

@@ -2,14 +2,11 @@
 #include "Arduino.h"
 #include "Costants.h"
 
-ContainerProp::ContainerProp(){
-    this->allarm = false;
-    this->contLevel = 0;
-}
 
 ContainerProp::ContainerProp(LCDManager& lcdManager) : lcdManager(lcdManager){
     this->allarm = false;
     this->contLevel = 0;
+    this->tempCount = 0;
 }
 
 void ContainerProp::setWasteLevel(int level){
@@ -20,11 +17,21 @@ void ContainerProp::setWasteLevel(int level){
 }
 
 void ContainerProp::setTempLevel(int level){
-    if (level <= MAX_TEMP){
-        this->contLevel = level;
+    //inizia a caricare i livelli di temperatura dopo che ha fatto la media tra i primi 10, in questo 
+    // modo si evitano errori di lettura dovuti a un rumore elettrico del sensore.
+    // Inoltre per ottenere un errore ancora minore viene fatta la media sulle ultime 20 letture del sensore
+    //Serial.println(level);
+    if (tempCount < 10){
+        tempCount++;
     }else{
-        this->setAllarm(true);
-        lcdManager.setMessage(LCD_5);
+        if (level <= MAX_TEMP){
+            Serial.print("livello");
+            Serial.println(level);
+            this->contLevel = level;
+        }else{
+            this->setAllarm(true);
+            lcdManager.setMessage(LCD_5);
+        }
     }
 }
 
