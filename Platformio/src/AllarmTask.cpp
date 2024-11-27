@@ -5,7 +5,7 @@
 #include "Task.h"
 #include "ContainerProp.h"
 
-#define DHTPIN 2
+#define DHTPIN 6
 #define DHTTYPE DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
