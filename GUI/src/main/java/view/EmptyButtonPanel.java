@@ -6,10 +6,10 @@ import java.awt.*;
 import utilities.ScreenSize;
 import controller.Controller;
 
-public class ButtonPanel extends JPanel {
+public class EmptyButtonPanel extends JPanel {
     private JButton button = buildButton();
 
-    public ButtonPanel(final Controller controller) {
+    public EmptyButtonPanel(final Controller controller) {
         add(button);
         setBackground(Color.LIGHT_GRAY);
         setBorder(new MatteBorder(2, 5, 5, 5, Color.black));
@@ -19,7 +19,7 @@ public class ButtonPanel extends JPanel {
     }
 
     private JButton buildButton() {
-        JButton button = new JButton("RESTORE");
+        JButton button = new JButton("EMPTY");
 
         button.setFont(new Font("Arial", Font.BOLD, 24));
         button.setBackground(Color.red);

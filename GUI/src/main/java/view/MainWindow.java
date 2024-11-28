@@ -3,22 +3,22 @@ package view;
 import controller.Controller;
 import utilities.ScreenSize;
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
-import view.History;
 
 public class MainWindow extends JFrame {
     private WorkingPanel workingPanel;
-    private ButtonPanel buttonPanel;
+    private RestoreButtonPanel restoreButtonPanel;
     private History history;
+    private EmptyButtonPanel emptyButtonPanel;
 
 
     private JPanel mainPanel;
 
     public MainWindow(final Controller controller) {
         workingPanel = new WorkingPanel(controller);
-        buttonPanel = new ButtonPanel(controller);
+        restoreButtonPanel = new RestoreButtonPanel(controller);
         history = new History(controller);
+        emptyButtonPanel = new EmptyButtonPanel(controller);
         mainPanel = buildMainPanel();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +27,6 @@ public class MainWindow extends JFrame {
         setSize((int) width,(int) height);
 
         setLocationRelativeTo(null);
-
         add(mainPanel);
         setVisible(true);
 
@@ -42,8 +41,8 @@ public class MainWindow extends JFrame {
 
         mainPanel.add(workingPanel);
         mainPanel.add(history);
-        mainPanel.add(buttonPanel);
-        mainPanel.add(new JPanel());
+        mainPanel.add(restoreButtonPanel);
+        mainPanel.add(emptyButtonPanel);
 
         return mainPanel;
 
