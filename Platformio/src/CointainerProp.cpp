@@ -5,13 +5,15 @@
 
 ContainerProp::ContainerProp(LCDManager& lcdManager) : lcdManager(lcdManager){
     this->allarm = false;
+    this->full = false;
     this->contLevel = 0;
     this->tempCount = 0;
 }
 
 void ContainerProp::setWasteLevel(int level){
     this->contLevel = level;
-    if (this->isFull()){
+    if (this->contLevel >= MAX_PERC_LEVEL){
+        this->full = true;
         lcdManager.setMessage(LCD_4);
     }
 }
@@ -25,8 +27,8 @@ void ContainerProp::setTempLevel(int level){
         tempCount++;
     }else{
         if (level <= MAX_TEMP){
-            Serial.print("livello");
-            Serial.println(level);
+            //Serial.print("livello");
+            //Serial.println(level);
             this->contLevel = level;
         }else{
             this->setAllarm(true);
@@ -51,7 +53,7 @@ int ContainerProp::getTempLevel(){
 }
 
 bool ContainerProp::isFull(){
-    return this->contLevel >= MAX_PERC_LEVEL;
+    return this->full;
 }
 
 bool ContainerProp::isAllarmOn(){
@@ -60,4 +62,11 @@ bool ContainerProp::isAllarmOn(){
 
 bool ContainerProp::genericAllarm(){
     return(this->isAllarmOn() || this->isFull());
+}
+
+void ContainerProp::retoreAllarm(){
+    this->allarm = false;
+}
+void ContainerProp::emptyContainer(){
+    this->full = false;
 }

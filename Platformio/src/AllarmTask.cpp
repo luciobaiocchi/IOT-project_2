@@ -46,8 +46,8 @@ void AllarmTask::tick() {
     this->container.setTempLevel(temp_val);
 
     // Stampa la temperatura
-    Serial.print("Temperatura media = ");
-    Serial.print(temp_val, 2); // Stampa con 2 decimali
-    Serial.println(" °C");
+    //Serial.print("Temperatura media = ");
+    //Serial.print(temp_val, 2); // Stampa con 2 decimali
+    //Serial.println(" °C");
 
 }

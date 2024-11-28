@@ -32,7 +32,7 @@ void ProximityTask::tick(){
         detectedStatus = val;          // check if the input is HIGH
         if (detectedStatus){
             //Serial.println("m");
-            tickToSleep.startTimer(200); // da mettere a 20 !!!!!!!!!!!
+            tickToSleep.startTimer(TICK_DEEPSLEEP); // da mettere a 20 !!!!!!!!!!!
         }else{
             //Serial.println("f");
         }

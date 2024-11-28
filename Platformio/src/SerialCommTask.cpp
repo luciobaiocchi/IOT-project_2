@@ -10,7 +10,7 @@ void SerialCommTask::init(int period){
 }
 
 void SerialCommTask::tick(){
-    if (container.isAllarmOn() || container.isFull()){
+    if (container.genericAllarm()){
         receive();
     }else{
         // send();

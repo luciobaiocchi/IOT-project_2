@@ -13,6 +13,8 @@ public:
   void setAllarm(bool state);
   int getWasteLevel();
   int getTempLevel();
+  void retoreAllarm();
+  void emptyContainer();
   bool isFull();
   bool isAllarmOn();
 private:
@@ -20,6 +22,7 @@ private:
   int contLevel;
   int tempCount;
   int tempLevel;
+  bool full;
   bool allarm;
 };
 
