@@ -43,7 +43,7 @@ void AllarmTask::tick() {
     float temp_val = (avg_adc_val * referenceVoltage) / 1023.0; // Converti in tensione
     temp_val = temp_val * 100.0; // LM35: 10mV per grado Celsius
     
-    this->container.setTempLevel(temp_val);
+    this->container.setTempLevel((int)temp_val);
 
     // Stampa la temperatura
     //Serial.print("Temperatura media = ");

@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.Container;
 import utilities.ScreenSize;
 import javax.swing.*;
 import java.awt.*;

@@ -1,10 +1,8 @@
 package view;
 
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+
 import controller.Controller;
 
 public class History extends JPanel {
@@ -13,7 +11,7 @@ public class History extends JPanel {
 
     public History(final Controller controller) {
         statisticsPane = new JEditorPane(); // Changed to JEditorPane
-        graficoPanel = new GraficoPanel();
+        graficoPanel = new GraficoPanel(controller);
         this.add(graficoPanel);
         this.setBackground(Color.darkGray);
     }

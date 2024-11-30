@@ -14,7 +14,8 @@ public class RestoreButtonPanel extends JPanel {
         setBackground(Color.LIGHT_GRAY);
         setBorder(new MatteBorder(2, 5, 5, 5, Color.black));
         button.addActionListener(e -> {
-            controller.updateHistory();
+            System.out.println("Restoring container");
+            controller.restore();
         });
     }
 

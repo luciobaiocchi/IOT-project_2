@@ -30,7 +30,7 @@ void MsgServiceClass::init(){
 }
 
 void MsgServiceClass::sendMsg(const String& msg){
-  //Serial.println(msg);  
+  Serial.println(msg);  
 }
 
 void serialEvent() {
@@ -62,5 +62,3 @@ Msg* MsgServiceClass::receiveMsg(Pattern& pattern){
   }
   
 }
-
-

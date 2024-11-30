@@ -13,7 +13,7 @@ public:
   void setAllarm(bool state);
   int getWasteLevel();
   int getTempLevel();
-  void retoreAllarm();
+  void restoreAllarm();
   void emptyContainer();
   bool isFull();
   bool isAllarmOn();

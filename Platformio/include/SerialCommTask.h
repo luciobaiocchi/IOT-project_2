@@ -10,13 +10,15 @@
 class SerialCommTask : public Task {
 
 public:
-  SerialCommTask(ContainerProp container);  
+  SerialCommTask(ContainerProp& container);  
   void init(int period);  
   void tick();
   void receive();
   void send();
 private:
-  ContainerProp container;
+  ContainerProp& container;
+  bool msgFullSent;
+  bool msgAllarmSent;
 };
 
 
