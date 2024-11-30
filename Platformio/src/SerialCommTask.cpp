@@ -31,10 +31,10 @@ void SerialCommTask::tick(){
 void SerialCommTask::receive(){
     if (MsgService.isMsgAvailable()) {
         Msg* msg = MsgService.receiveMsg();    
-        if (container.isAllarmOn() && msg->getContent() == "R" ){
+        if (container.isAllarmOn() && msg->getContent() == "RESTORE" ){
             this->msgAllarmSent = false;
             this->container.restoreAllarm();
-        }else if(container.isFull() && msg->getContent() == "E"){
+        }else if(container.isFull() && msg->getContent() == "EMPTY"){
             this->msgFullSent = false;
             this->container.emptyContainer();
         }

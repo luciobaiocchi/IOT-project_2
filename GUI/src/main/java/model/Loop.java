@@ -57,7 +57,7 @@ public class Loop extends Thread{
             if (msg.startsWith("F")) {
                 allarmType = AllarmType.FULL;
                 container.setFull(true);
-                //System.out.println("FULL");
+                System.out.println("FULL");
             } else if (msg.startsWith("A")) {
                 allarmType = AllarmType.TEMPERATURE;
                 container.setMaxTemp(true);
@@ -79,16 +79,14 @@ public class Loop extends Thread{
 
     void send() throws InterruptedException {
         System.out.println(container.isFull());
-        if (!container.isFull()) {
+        if (!container.isFull() && allarmType == AllarmType.FULL) {
             System.out.println("EMPTY");
             this.allarmType = AllarmType.NULL;
-            channel.sendMsg("E");
-            Thread.sleep(1000);
-        } else if (!container.isMaxTemp()) {
-            System.out.println("EMPTY");
+            channel.sendMsg("EMPTY");
+        } else if (!container.isMaxTemp() && allarmType == AllarmType.TEMPERATURE) {
+            System.out.println("RESTORE");
             this.allarmType = AllarmType.NULL;
-            Thread.sleep(1000);
-            channel.sendMsg("R");
+            channel.sendMsg("RESTORE");
         }
     }
 }

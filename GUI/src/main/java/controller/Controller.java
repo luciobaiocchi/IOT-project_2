@@ -25,5 +25,8 @@ public class Controller {
     public boolean isFull() {
         return container.isFull();
     }
+    public boolean isMaxTemp() {
+        return container.isMaxTemp();
+    }
 }
 

@@ -14,8 +14,10 @@ public class EmptyButtonPanel extends JPanel {
         setBackground(Color.LIGHT_GRAY);
         setBorder(new MatteBorder(2, 5, 5, 5, Color.black));
         button.addActionListener(e -> {
-            System.out.println("Emptying container");
-            controller.empty();
+            if (controller.isFull()) {
+                System.out.println("Emptying container");
+                controller.empty();
+            }
         });
     }
 
