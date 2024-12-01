@@ -8,7 +8,6 @@ AllarmTask::AllarmTask(int pinTemp, ContainerProp& container, LCDManager& lcdMan
     this->totalSamples = 0;
     this->sumSamples = 0;
 
-    // Inizializza il buffer dei campioni a zero
     for (int i = 0; i < NUM_SAMPLES; i++) {
         samples[i] = 0;
     }

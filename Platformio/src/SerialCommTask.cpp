@@ -1,7 +1,7 @@
 #include "SerialCommTask.h"
 #include "ContainerProp.h"
 
-SerialCommTask::SerialCommTask(ContainerProp& container) : container(container){
+SerialCommTask::SerialCommTask(ContainerProp& container, Gate& gate) : container(container), gate(gate){
     MsgService.init();
     this->msgFullSent = false;
     this->msgAllarmSent = false;
@@ -37,9 +37,10 @@ void SerialCommTask::receive(){
         }else if(container.isFull() && msg->getContent() == "EMPTY"){
             this->msgFullSent = false;
             this->container.emptyContainer();
+            gate.emptyGate();
         }
-    delete msg;
-  }
+        delete msg;
+    }
 
 }
 

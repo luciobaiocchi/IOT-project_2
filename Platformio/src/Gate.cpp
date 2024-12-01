@@ -20,13 +20,21 @@ void Gate::closeGate(){
     move(90);
 }
 
+
+void Gate::emptyGate(){
+    move(0);
+}
+
 void Gate::move(int dir){
     switch (dir){
-    case 90:
-        currentState = 3;
-        break;
-    case 180:
-        currentState = 2;
+        case 0:
+            currentState = AVAILABLE;
+            break;
+        case 90:
+            currentState = NOT_AVAILABLE;
+            break;
+        case 180:
+            currentState = OPEN;
     }
     if (dir != currentDir){
         servo.write(dir);
@@ -36,10 +44,8 @@ void Gate::move(int dir){
     
 }
 
-void Gate::allarmClosure(){
-    move(90);
-}
-
 void Gate::setState(int gateState){
     currentState = gateState;
 }
+
+

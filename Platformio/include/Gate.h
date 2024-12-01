@@ -18,8 +18,8 @@ public:
     int getState();
     void openGate();
     void closeGate();
-    void allarmClosure();
     void setState(int gateState);
+    void emptyGate();
 };
 
 #endif

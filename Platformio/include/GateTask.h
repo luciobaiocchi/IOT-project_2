@@ -11,14 +11,17 @@
 
 class GateTask : public Task {
 public:
-    GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp& container, LCDManager& lcdManager);  
+    GateTask(int button1Pin, int button2Pin, ContainerProp& container, LCDManager& lcdManager, Gate& gate);  
     void init(int period);  
     void tick();
     TickCounter timer;
+    void handleAvailableState();
+    void handleOpenState();
+    void handleNotAvaiableState();
 private:
-    Gate* gate;
     ContainerProp& container;  
     LCDManager& lcdManager;
+    Gate& gate;
     Button* open;
     Button* close;
 };

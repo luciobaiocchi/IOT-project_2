@@ -1,11 +1,10 @@
 #ifndef __COSTANTS__
 #define __COSTANTS__
 
-#define GATE_AVAILABLE 1
-#define GATE_IS_OPEN 2
-#define GATE_AFTER_CLOSURE 3
-#define CONTAINER_FULL 4
-#define TMP_ALLARM 5
+#define AVAILABLE 1
+#define OPEN 2
+#define NOT_AVAILABLE 3
+
 
 #define MAX_TIME_OPEN 5000
 #define T2 3000

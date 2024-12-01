@@ -20,16 +20,15 @@ void setup() {
   
   LCDManager lcdManager;
   ContainerProp container(lcdManager);
+  Gate gate(5);
 
-
-  /* Tasks initialization*/
-  Task* gateTask = new GateTask(8, 9, 5, container, lcdManager);
+  Task* gateTask = new GateTask(8, 9, container, lcdManager, gate);
   gateTask->init(100);
 
   Task* ledTask = new LedTask(3, 4, container);
   ledTask->init(150);
 
-  Task* serialCommTask = new SerialCommTask(container);
+  Task* serialCommTask = new SerialCommTask(container, gate);
   serialCommTask->init(100);
 
   Task* proxTask = new ProximityTask(2, lcdManager);
