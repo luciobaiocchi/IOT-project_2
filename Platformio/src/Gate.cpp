@@ -6,6 +6,7 @@ Gate::Gate(int pinServo) {
     servo.attach(pinServo);
     servo.write(90);
     currentDir = 12002;
+    timer = TickCounter();
 }
 
 int Gate::getState() {
@@ -13,10 +14,12 @@ int Gate::getState() {
 }
 
 void Gate::openGate(){
+    timer.startTimer(30);
     move(180);
 }
 
 void Gate::closeGate(){
+    timer.startTimer(50);
     move(90);
 }
 
@@ -25,17 +28,22 @@ void Gate::emptyGate(){
     move(0);
 }
 
-void Gate::move(int dir){
-    switch (dir){
-        case 0:
-            currentState = AVAILABLE;
-            break;
-        case 90:
-            currentState = NOT_AVAILABLE;
-            break;
-        case 180:
-            currentState = OPEN;
+bool Gate::isTimerElapsed(){
+    if (timer.isTimeElapsed()) {
+        return true;
+    }else{
+        timer.dec();
+        return false;
     }
+}
+
+void Gate::move(int dir){
+    if (dir == 0 || dir == 180){
+        currentState = OPEN;
+    }else if (dir == 90) {
+        currentState = NOT_AVAILABLE;
+    } 
+
     if (dir != currentDir){
         servo.write(dir);
         currentDir = dir;

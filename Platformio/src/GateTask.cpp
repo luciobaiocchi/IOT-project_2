@@ -7,7 +7,7 @@ GateTask::GateTask(int button1Pin, int button2Pin, ContainerProp& container, LCD
     : container(container), lcdManager(lcdManager), gate(gate) {  
     open = new GateButton(button1Pin);
     close = new GateButton(button2Pin);
-    timer = TickCounter();
+    allarmOn = false;
 }
 
 void GateTask::init(int period) {
@@ -15,19 +15,26 @@ void GateTask::init(int period) {
 }
 
 void GateTask::tick() {
+    Serial.println(gate.getState());
     if (!container.genericAllarm()){
+        if (allarmOn == true && gate.getState() == NOT_AVAILABLE){
+            gate.setState(AVAILABLE);
+            allarmOn = false;
+        }
+        
         switch (gate.getState()){
-        case AVAILABLE:
-            handleAvailableState();
-            break;
-        case OPEN:
-            handleOpenState();
-            break;
-        case NOT_AVAILABLE:
-            handleNotAvaiableState();
-            break;
+            case AVAILABLE:
+                handleAvailableState();
+                break;
+            case OPEN:
+                handleOpenState();
+                break;
+            case NOT_AVAILABLE:
+                handleNotAvaiableState();
+                break;
         }
     } else {
+        allarmOn = true;
         gate.closeGate();
     }
     
@@ -37,23 +44,20 @@ void GateTask::handleAvailableState(){
     lcdManager.setMessage(LCD_1);
     if (open->isPressed()){
         lcdManager.setMessage(LCD_2);
-        timer.startTimer(30);
+        //timer.startTimer(30);
         gate.openGate();
     }
 }
 
 void GateTask::handleOpenState(){
-    timer.dec();
-    if (timer.isTimeElapsed() || close->isPressed()){
+    if (gate.isTimerElapsed() || close->isPressed()){
         lcdManager.setMessage(LCD_3);
         gate.closeGate();
-        timer.startTimer(50);
     }
 }
 
 void GateTask::handleNotAvaiableState(){
-    timer.dec();
-    if (timer.isTimeElapsed()){
+    if (gate.isTimerElapsed()){
         lcdManager.setMessage(LCD_1);
         gate.setState(1);
     }

@@ -20,7 +20,7 @@ public class Loop extends Thread{
 
     public void run() {
         try {
-            channel = new SerialCommChannel("/dev/cu.usbmodem2101", 9600);
+            channel = new SerialCommChannel("COM3", 9600);
             System.out.println("Channel created");
             System.out.println("Waiting Arduino for rebooting...");
             Thread.sleep(4000);

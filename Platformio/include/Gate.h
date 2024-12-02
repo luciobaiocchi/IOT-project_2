@@ -13,6 +13,7 @@ private:
     int currentDir;
     void move(int dir);
     int currentState;
+    TickCounter timer;
 public:
     Gate(int pinServo); 
     int getState();
@@ -20,6 +21,7 @@ public:
     void closeGate();
     void setState(int gateState);
     void emptyGate();
+    bool isTimerElapsed();
 };
 
 #endif

@@ -13,7 +13,8 @@ void SerialCommTask::init(int period){
 
 
 void SerialCommTask::tick(){
-    if (container.isFull() && !this->msgFullSent){
+    
+    if (container.isFull() && !this->msgFullSent ){
         msgFullSent = true;
         MsgService.sendMsg("F");   
     }
@@ -21,10 +22,11 @@ void SerialCommTask::tick(){
         msgFullSent = true;
         MsgService.sendMsg("A");   
     }
+
     if (container.genericAllarm()){
         receive();
     }else{
-        send();
+       // send();
     }
 }
 
