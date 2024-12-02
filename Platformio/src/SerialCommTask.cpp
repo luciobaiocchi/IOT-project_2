@@ -23,11 +23,7 @@ void SerialCommTask::tick(){
         MsgService.sendMsg("A");   
     }
 
-    if (container.genericAllarm()){
-        receive();
-    }else{
-       // send();
-    }
+    receive();
 }
 
 void SerialCommTask::receive(){
@@ -40,7 +36,10 @@ void SerialCommTask::receive(){
             this->msgFullSent = false;
             this->container.emptyContainer();
             gate.emptyGate();
+        } else if (msg->getContent() == "X"){
+            send();
         }
+        
         delete msg;
     }
 

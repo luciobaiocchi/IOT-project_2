@@ -3,8 +3,6 @@ package model;
 import utilities.CommChannel;
 import utilities.SerialCommChannel;
 
-import java.lang.reflect.Array;
-
 public class Loop extends Thread{
     private CommChannel channel;
     private Container container;
@@ -31,20 +29,19 @@ public class Loop extends Thread{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         while(true) {
-            if(!this.container.genericAllarm()) {
-                recieve();
-            }else {
+
                 try {
-                    send();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    receive();
+                } catch (Exception ignored) {
+
                 }
-            }
+
         }
     }
 
-    void recieve(){
+    void receive(){
         String msg = null;
         try {
             msg = channel.receiveMsg();
@@ -56,11 +53,9 @@ public class Loop extends Thread{
         try {
             if (msg.startsWith("F")) {
                 allarmType = AllarmType.FULL;
-                container.setFull(true);
                 System.out.println("FULL");
             } else if (msg.startsWith("A")) {
                 allarmType = AllarmType.TEMPERATURE;
-                container.setMaxTemp(true);
                 //System.out.println("TEMPERATURE");
             } else if (msg.startsWith("L")) {
                 String livello = msg.replaceAll("L(\\d+)T.*", "$1");
@@ -71,9 +66,13 @@ public class Loop extends Thread{
                 System.out.println("LEVEL: " + livello);
                 System.out.println("TEMPERATURE: " + temperatura);
                  */
-            } //else {System.out.println(msg);}
+            } else {
+                send();
+            }
         } catch (NumberFormatException  e) {
             System.out.println("Error: " + e.getMessage());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -87,6 +86,8 @@ public class Loop extends Thread{
             System.out.println("RESTORE");
             this.allarmType = AllarmType.NULL;
             channel.sendMsg("RESTORE");
+        } else {
+            channel.sendMsg("X");
         }
     }
 }

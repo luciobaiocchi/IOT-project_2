@@ -18,6 +18,9 @@ public class Container {
     }
     public void setWastelvl(Integer wastelvl) {
         this.wastelvl = wastelvl;
+        if (wastelvl >= 100) {
+            setFull(true);
+        }
     }
     public void setTemp(Integer temp) {
         this.temp = temp;
