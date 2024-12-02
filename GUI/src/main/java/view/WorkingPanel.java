@@ -80,8 +80,8 @@ public class WorkingPanel extends JPanel {
         } else {
             progressBar.setForeground(Color.GREEN);
             progressBar.setBackground(Color.DARK_GRAY);
+            progressBar.setValue(wasteLevel);
+            progressBar.setString(wasteLevel + "%");
         }
-        progressBar.setValue(wasteLevel);
-        progressBar.setString(wasteLevel + "%");
     }
 }
