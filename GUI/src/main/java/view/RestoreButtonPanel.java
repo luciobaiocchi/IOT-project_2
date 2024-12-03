@@ -6,15 +6,18 @@ import java.awt.*;
 import utilities.ScreenSize;
 import controller.Controller;
 
-public class ButtonPanel extends JPanel {
+public class RestoreButtonPanel extends JPanel {
     private JButton button = buildButton();
 
-    public ButtonPanel(final Controller controller) {
+    public RestoreButtonPanel(final Controller controller) {
         add(button);
         setBackground(Color.LIGHT_GRAY);
         setBorder(new MatteBorder(2, 5, 5, 5, Color.black));
         button.addActionListener(e -> {
-            controller.updateHistory();
+            if (controller.isMaxTemp()) {
+                System.out.println("Restoring container");
+                controller.restore();
+            }
         });
     }
 

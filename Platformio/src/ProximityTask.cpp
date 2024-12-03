@@ -10,11 +10,12 @@ void interruptHandler();
 volatile bool interruptFlag = false;
 
 ProximityTask::ProximityTask(int pinSensor, LCDManager& lcdManager) : lcdManager(lcdManager) {
-    interruptFlag = false;
+    this->interruptFlag = false;
     this->lcdManager = lcdManager;
     this->pinSensor = pinSensor;
     this->detectedStatus = false;
-    this->initTime = millis();
+    this->val = false;
+    tickToSleep = TickCounter();
     pinMode(pinSensor, INPUT);
 }
 
@@ -23,44 +24,40 @@ void ProximityTask::init(int period){
 }
 
 void ProximityTask::tick(){
+    //Serial.println("tack");
+    tickToSleep.printRemaining();
+
     val = digitalRead(pinSensor);  // read input value
-    //Serial.println("tick");
     if (val != detectedStatus) {  
         detectedStatus = val;          // check if the input is HIGH
         if (detectedStatus){
-            this->initTime = millis();
             //Serial.println("m");
-            //delay(10);
-        }/*else{
-            Serial.println("f");
-            delay(10);
-        }*/
+            tickToSleep.startTimer(TICK_DEEPSLEEP); // da mettere a 20 !!!!!!!!!!!
+        }else{
+            //Serial.println("f");
+        }
     }
-    if (checkEndTime(millis())){
+    tickToSleep.dec();
+    if (tickToSleep.isTimeElapsed()){
         this->sleep();
     }
 }
 
-boolean ProximityTask::checkEndTime(unsigned long actualTime){
-    int timeRemanining = TIME_DEEPSLEEP - (actualTime - initTime);
-    return timeRemanining <= 0;
-}
-
 void interruptHandler() {
+    disableInterrupt(2);
     interruptFlag = true;
 }
 
 void ProximityTask::sleep(){
     // Abilita l'interrupt sul pin specifico
     enableInterrupt(pinSensor, interruptHandler, RISING);
+    //lcdManager.setMessage("sleep");
     lcdManager.sleep();
     //Serial.println("sleep");
-    delay(20);
     set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
     sleep_enable(); 
     sleep_mode();   
     sleep_disable();
     lcdManager.wakeUp();
     // Disabilita l'interrupt sul pin specifico
-    disableInterrupt(pinSensor);
 }

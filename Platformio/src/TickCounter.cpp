@@ -1,7 +1,7 @@
 #include "TickCounter.h"
 
 TickCounter::TickCounter(){
-
+    tmpTime = 10;
 }
 
 
@@ -16,3 +16,9 @@ bool TickCounter::isTimeElapsed(){
 void TickCounter::dec(){
     tmpTime--;
 }
+
+void TickCounter::printRemaining(){
+    //Serial.print("REMAINING");
+    //Serial.println(tmpTime);
+}
+

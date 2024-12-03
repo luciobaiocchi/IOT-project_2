@@ -3,12 +3,11 @@
 #include "GateButton.h"
 #include "Gate.h"
 
-GateTask::GateTask(int button1Pin, int button2Pin, int pinServo, ContainerProp& container, LCDManager& lcdManager) 
-    : container(container), lcdManager(lcdManager) {  
+GateTask::GateTask(int button1Pin, int button2Pin, ContainerProp& container, LCDManager& lcdManager, Gate& gate) 
+    : container(container), lcdManager(lcdManager), gate(gate) {  
     open = new GateButton(button1Pin);
     close = new GateButton(button2Pin);
-    gate = new Gate(pinServo); 
-    timer = TickCounter();
+    allarmOn = false;
 }
 
 void GateTask::init(int period) {
@@ -21,34 +20,50 @@ void GateTask::init(int period) {
  */
 
 void GateTask::tick() {
+    gate.checkServo();
     if (!container.genericAllarm()){
-        switch (gate->getState()){
-        case 1:
-            lcdManager.setMessage(LCD_1);
-            if (open->isPressed()){
-                lcdManager.setMessage(LCD_2);
-                timer.startTimer(30);
-                gate->openGate();
-            }
-            break;
-        case 2:
-            timer.dec();
-            if (timer.isTimeElapsed() || close->isPressed()){
-                lcdManager.setMessage(LCD_3);
-                gate->closeGate();
-                timer.startTimer(50);
-            }
-            break;
-        case 3:
-            timer.dec();
-            if (timer.isTimeElapsed()){
-                lcdManager.setMessage(LCD_1);
-                gate->setState(1);
-            }
-        break;
+        if (allarmOn == true && gate.getState() == NOT_AVAILABLE){
+            gate.setState(AVAILABLE);
+            allarmOn = false;
         }
-    } else{
-        gate->allarmClosure();
+        
+        switch (gate.getState()){
+            case AVAILABLE:
+                handleAvailableState();
+                break;
+            case OPEN:
+                handleOpenState();
+                break;
+            case NOT_AVAILABLE:
+                handleNotAvaiableState();
+                break;
+        }
+    } else {
+        allarmOn = true;
+        gate.closeGate();
     }
     
+}
+
+void GateTask::handleAvailableState(){
+    lcdManager.setMessage(LCD_1);
+    if (open->isPressed()){
+        lcdManager.setMessage(LCD_2);
+        //timer.startTimer(30);
+        gate.openGate();
+    }
+}
+
+void GateTask::handleOpenState(){
+    if (gate.isTimerElapsed() || close->isPressed()){
+        lcdManager.setMessage(LCD_3);
+        gate.closeGate();
+    }
+}
+
+void GateTask::handleNotAvaiableState(){
+    if (gate.isTimerElapsed()){
+        lcdManager.setMessage(LCD_1);
+        gate.setState(1);
+    }
 }

@@ -1,19 +1,32 @@
 package controller;
 
-import model.History;
+import model.Container;
 import model.Loop;
 
-import java.util.List;
-
 public class Controller {
-    private History history = new History();
-
-    public List<List<String>> getHistory() {
-        return null;
+    private final Container container;
+    public Controller() {
+        this.container = new Container(0, 0);
+        new Loop(container).start();
+        System.out.println("Loop started");
     }
-
-    public void updateHistory() {
-        //history.updateHistory(loop.getPercentage());
+    public void empty() {
+        container.empty();
+    }
+    public void restore() {
+        container.restore();
+    }
+    public int getLevel() {
+        return container.getWastelvl();
+    }
+    public int getTemp() {
+        return container.getTemp();
+    }
+    public boolean isFull() {
+        return container.isFull();
+    }
+    public boolean isMaxTemp() {
+        return container.isMaxTemp();
     }
 }
 

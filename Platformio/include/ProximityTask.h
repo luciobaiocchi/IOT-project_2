@@ -2,17 +2,17 @@
 #define __PROXIMITYTASK__
 #include "Task.h"
 #include "LCDManager.h"
+#include "TickCounter.h"
 
 class ProximityTask : public Task {
 private:
     LCDManager lcdManager;
     int pirState; 
     int pinSensor;
-    unsigned long initTime;
+    bool val;
     bool detectedStatus;
-    int val;
     volatile bool interruptFlag;
-    bool checkEndTime(unsigned long actualTime);
+    TickCounter tickToSleep;
     void sleep();
 public:
     ProximityTask(int pinSensor, LCDManager& lcdManager);

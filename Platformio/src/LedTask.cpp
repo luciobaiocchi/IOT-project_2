@@ -4,7 +4,6 @@
 LedTask::LedTask(int pinGreen, int pinRed, ContainerProp& container): container(container){
     greenLed = new Led(pinGreen);
     redLed = new Led(pinRed);
-    this->container = container;
 }
 
 void LedTask::init(int period){
@@ -19,6 +18,4 @@ void LedTask::tick(){
         greenLed->switchOn();
         redLed->switchOff();
     }
-    
-    
 }

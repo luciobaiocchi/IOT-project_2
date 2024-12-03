@@ -8,6 +8,7 @@ class TickCounter {
 public:
     TickCounter();
     void startTimer(int time);
+    void printRemaining();
     bool isTimeElapsed();
     void dec();
 private:
