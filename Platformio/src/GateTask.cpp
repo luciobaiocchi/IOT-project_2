@@ -15,7 +15,7 @@ void GateTask::init(int period) {
 }
 
 void GateTask::tick() {
-    Serial.println(gate.getState());
+    gate.checkServo();
     if (!container.genericAllarm()){
         if (allarmOn == true && gate.getState() == NOT_AVAILABLE){
             gate.setState(AVAILABLE);
