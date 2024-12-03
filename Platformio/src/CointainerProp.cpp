@@ -32,7 +32,6 @@ void ContainerProp::setTempLevel(int level){
         if (level >= MAX_TEMP){
             //Serial.print("livello");
             //Serial.println(level);
-            
             this->setAllarm(true);
             lcdManager.setMessage(LCD_5);
         }

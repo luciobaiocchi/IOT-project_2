@@ -72,7 +72,7 @@ public class GraficoPanel extends JPanel {
         // Pannello grafico
         ChartPanel pannelloGrafico = new ChartPanel(grafico);
         pannelloGrafico.setMouseWheelEnabled(true); // Consente lo zoom con la rotella
-        pannelloGrafico.setPreferredSize(new Dimension(900, 500)); // Dimensioni iniziali
+        pannelloGrafico.setPreferredSize(new Dimension(750, 500)); // Dimensioni iniziali
 
         // Layout e aggiunta al pannello
         setLayout(new BorderLayout());
@@ -90,7 +90,7 @@ public class GraficoPanel extends JPanel {
         });
 
         // Timer per aggiornare il grafico dinamicamente
-        Timer timer = new Timer(2000, new AggiornaDati());
+        Timer timer = new Timer(500, new AggiornaDati());
         timer.start();
     }
 

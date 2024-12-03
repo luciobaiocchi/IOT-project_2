@@ -18,7 +18,7 @@ public class Loop extends Thread{
 
     public void run() {
         try {
-            channel = new SerialCommChannel("COM3", 9600);
+            channel = new SerialCommChannel("/dev/cu.usbmodem101", 9600);
             System.out.println("Channel created");
             System.out.println("Waiting Arduino for rebooting...");
             Thread.sleep(4000);
@@ -54,9 +54,11 @@ public class Loop extends Thread{
             if (msg.startsWith("F")) {
                 allarmType = AllarmType.FULL;
                 System.out.println("FULL");
+                container.setFull(true);
             } else if (msg.startsWith("A")) {
                 allarmType = AllarmType.TEMPERATURE;
-                //System.out.println("TEMPERATURE");
+                container.setMaxTemp(true);
+                System.out.println("TEMPERATURE");
             } else if (msg.startsWith("L")) {
                 String livello = msg.replaceAll("L(\\d+)T.*", "$1");
                 String temperatura = msg.replaceAll(".*T(\\d+)", "$1");
@@ -77,7 +79,6 @@ public class Loop extends Thread{
     }
 
     void send() throws InterruptedException {
-        System.out.println(container.isFull());
         if (!container.isFull() && allarmType == AllarmType.FULL) {
             System.out.println("EMPTY");
             this.allarmType = AllarmType.NULL;

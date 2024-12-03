@@ -14,9 +14,11 @@ public class EmptyButtonPanel extends JPanel {
         setBackground(Color.LIGHT_GRAY);
         setBorder(new MatteBorder(2, 5, 5, 5, Color.black));
         button.addActionListener(e -> {
-            if (controller.isFull()) {
+            if (controller.isFull() && !controller.isMaxTemp()) {
                 System.out.println("Emptying container");
                 controller.empty();
+            }else if (controller.isMaxTemp() && controller.isFull()) {
+                JOptionPane.showMessageDialog(this, "Container is full and at max temperature", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
     }

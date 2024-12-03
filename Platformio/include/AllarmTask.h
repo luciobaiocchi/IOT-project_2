@@ -17,7 +17,7 @@ private:
     LCDManager& lcdManager;
 
     // Aggiunta dei membri privati necessari per il buffer circolare
-    static const int NUM_SAMPLES = 20;  // Numero massimo di campioni per la media
+    static const int NUM_SAMPLES = 10;  // Numero massimo di campioni per la media
     int samples[NUM_SAMPLES];           // Buffer circolare dei campioni
     int currentIndex;                   // Indice del buffer circolare
     int totalSamples;                   // Numero di campioni attualmente validi
