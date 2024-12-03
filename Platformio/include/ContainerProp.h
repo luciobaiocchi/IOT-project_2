@@ -17,6 +17,7 @@ public:
   void emptyContainer();
   bool isFull();
   bool isAllarmOn();
+  bool gateToBeEmptied();
 private:
   LCDManager& lcdManager;
   int contLevel;
@@ -24,6 +25,7 @@ private:
   int tempLevel;
   bool full;
   bool allarm;
+  bool toBeEmptied;
 };
 
 #endif

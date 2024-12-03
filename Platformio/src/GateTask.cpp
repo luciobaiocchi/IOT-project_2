@@ -15,7 +15,10 @@ void GateTask::init(int period) {
 }
 
 void GateTask::tick() {
-    Serial.println(gate.getState());
+    if (container.gateToBeEmptied()){
+        lcdManager.setMessage(LCD_2);
+        gate.openGate();
+    }
     if (!container.genericAllarm()){
         if (allarmOn == true && gate.getState() == NOT_AVAILABLE){
             gate.setState(AVAILABLE);
@@ -44,7 +47,6 @@ void GateTask::handleAvailableState(){
     lcdManager.setMessage(LCD_1);
     if (open->isPressed()){
         lcdManager.setMessage(LCD_2);
-        //timer.startTimer(30);
         gate.openGate();
     }
 }
