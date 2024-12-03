@@ -30,14 +30,11 @@ public class Loop extends Thread{
             throw new RuntimeException(e);
         }
 
-        while(true) {
-
-                try {
-                    receive();
-                } catch (Exception ignored) {
-
-                }
-
+        while(true) try {
+            System.out.println("Waiting for message...");
+            receive();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -64,9 +61,9 @@ public class Loop extends Thread{
                 String temperatura = msg.replaceAll(".*T(\\d+)", "$1");
                 container.setTemp(Integer.parseInt(temperatura));
                 container.setWastelvl(Integer.parseInt(livello));
-                /*
                 System.out.println("LEVEL: " + livello);
                 System.out.println("TEMPERATURE: " + temperatura);
+                /*
                  */
             } else {
                 send();
@@ -88,6 +85,7 @@ public class Loop extends Thread{
             this.allarmType = AllarmType.NULL;
             channel.sendMsg("RESTORE");
         } else {
+            System.out.println("X");
             channel.sendMsg("X");
         }
     }

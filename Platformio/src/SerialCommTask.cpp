@@ -35,11 +35,10 @@ void SerialCommTask::receive(){
         }else if(container.isFull() && msg->getContent() == "EMPTY"){
             this->msgFullSent = false;
             this->container.emptyContainer();
-            //gate.emptyGate();
+            gate.emptyGate();
         } else if (msg->getContent() == "X"){
             send();
         }
-        
         delete msg;
     }
 

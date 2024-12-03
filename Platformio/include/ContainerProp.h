@@ -21,7 +21,6 @@ public:
 private:
   LCDManager& lcdManager;
   int contLevel;
-  int tempCount;
   int tempLevel;
   bool full;
   bool allarm;
