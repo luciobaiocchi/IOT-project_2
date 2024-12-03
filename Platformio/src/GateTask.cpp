@@ -15,10 +15,7 @@ void GateTask::init(int period) {
 }
 
 void GateTask::tick() {
-    if (container.gateToBeEmptied()){
-        lcdManager.setMessage(LCD_2);
-        gate.openGate();
-    }
+    Serial.println(gate.getState());
     if (!container.genericAllarm()){
         if (allarmOn == true && gate.getState() == NOT_AVAILABLE){
             gate.setState(AVAILABLE);
@@ -60,6 +57,6 @@ void GateTask::handleOpenState(){
 void GateTask::handleNotAvaiableState(){
     if (gate.isTimerElapsed()){
         lcdManager.setMessage(LCD_1);
-        gate.setState(1);
+        gate.setState(AVAILABLE);
     }
 }

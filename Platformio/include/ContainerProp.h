@@ -18,14 +18,12 @@ public:
   void emptyContainer();
   bool isFull();
   bool isAllarmOn();
-  bool gateToBeEmptied();
 private:
   LCDManager& lcdManager;
   int contLevel;
   int tempLevel;
-  bool full;
   bool allarm;
-  bool toBeEmptied;
+  bool full;
 };
 
 #endif

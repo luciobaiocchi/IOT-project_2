@@ -6,7 +6,6 @@
 ContainerProp::ContainerProp(LCDManager& lcdManager) : lcdManager(lcdManager){
     this->allarm = false;
     this->full = false;
-    this->toBeEmptied = false;
     this->contLevel = 0;
     this->tempLevel = 0;
 }
@@ -42,15 +41,6 @@ bool ContainerProp::isAllarmOn(){
     return this->allarm;
 }
 
-bool ContainerProp::gateToBeEmptied(){
-    if (toBeEmptied){
-        toBeEmptied = false;
-        return true;
-    }else{
-        return false;
-    }
-}
-
 bool ContainerProp::genericAllarm(){
     return(this->isAllarmOn() || this->isFull());
 }
@@ -60,5 +50,4 @@ void ContainerProp::restoreAllarm(){
 }
 void ContainerProp::emptyContainer(){
     this->full = false;
-    this->toBeEmptied = true;
 }
