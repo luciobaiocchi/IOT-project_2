@@ -24,7 +24,6 @@ void GateTask::tick() {
             gate.setState(AVAILABLE);
             allarmOn = false;
         }
-        
         switch (gate.getState()){
             case AVAILABLE:
                 handleAvailableState();

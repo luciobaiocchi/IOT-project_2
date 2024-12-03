@@ -11,6 +11,7 @@ public:
   void setWasteLevel(int level);
   void setTempLevel(int level);
   void setAllarm(bool state);
+  void setFull(bool state);
   int getWasteLevel();
   int getTempLevel();
   void restoreAllarm();

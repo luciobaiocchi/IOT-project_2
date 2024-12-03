@@ -13,10 +13,9 @@ ContainerProp::ContainerProp(LCDManager& lcdManager) : lcdManager(lcdManager){
 
 void ContainerProp::setWasteLevel(int level){
     this->contLevel = level;
-    if (this->contLevel >= MAX_PERC_LEVEL){
-        this->full = true;
-        lcdManager.setMessage(LCD_4);
-    }
+}
+void ContainerProp::setFull(bool state){
+    this->full = true;
 }
 
 void ContainerProp::setTempLevel(int level){

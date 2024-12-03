@@ -3,6 +3,9 @@ package model;
 import utilities.CommChannel;
 import utilities.SerialCommChannel;
 
+import java.io.Serial;
+import java.util.SimpleTimeZone;
+
 public class Loop extends Thread{
     private CommChannel channel;
     private Container container;
@@ -18,7 +21,7 @@ public class Loop extends Thread{
 
     public void run() {
         try {
-            channel = new SerialCommChannel("/dev/cu.usbmodem101", 9600);
+            channel = new SerialCommChannel("/dev/cu.usbmodem2101", 9600);
             System.out.println("Channel created");
             System.out.println("Waiting Arduino for rebooting...");
             Thread.sleep(4000);
@@ -30,11 +33,13 @@ public class Loop extends Thread{
             throw new RuntimeException(e);
         }
 
-        while(true) try {
-            System.out.println("Waiting for message...");
-            receive();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        while(true) {
+            try {
+                System.out.println("Waiting for message...");
+                receive();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -46,7 +51,7 @@ public class Loop extends Thread{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("Received: " + msg);
         try {
             if (msg.startsWith("F")) {
                 allarmType = AllarmType.FULL;
@@ -66,6 +71,7 @@ public class Loop extends Thread{
                 /*
                  */
             } else {
+                System.out.println("Sending...");
                 send();
             }
         } catch (NumberFormatException  e) {
