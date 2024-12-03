@@ -13,6 +13,7 @@
 #define MAX_CONT_LEVEL 35
 #define SONAR_HEIGHT 5
 #define MAX_PERC_LEVEL 100
+#define DETACH_TICK 3
 
 
 
