@@ -65,3 +65,5 @@ This project is an Arduino-based smart waste management system. It monitors vari
 ## License
 
 This project is released under the MIT License. See the `LICENSE` file for more details.
+
+## Link to video demo https://youtu.be/G0cvC06uNy4
